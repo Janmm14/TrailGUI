@@ -1,4 +1,7 @@
 /*
+ * BE JAVA 7 COMPATIBLE (its a java 8 class)
+ */
+/*
  * Copyright (c) 2010, 2013, Oracle and/or its affiliates. All rights reserved.
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
@@ -29,7 +32,7 @@ package ca.jamiesinn.trailsgui.util;
  * result. Unlike most other functional interfaces, {@code Consumer} is expected
  * to operate via side-effects.
  * <p/>
- * <p>This is a <a href="package-summary.html">functional interface</a>
+ * <p>This is a functional interface
  * whose functional method is {@link #accept(Object)}.
  *
  * @param <T> the type of the input to the operation
