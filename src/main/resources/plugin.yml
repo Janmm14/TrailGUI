@@ -1,7 +1,8 @@
 name: TrailGUI
 main: ca.jamiesinn.trailgui.Main
-version: 3.8
+version: ${plugin.version}
 author: Coder_M
+authors: [JamieSinn, Janmm14]
 
 commands:
    trail:
@@ -10,7 +11,7 @@ commands:
       description: Opens the TrailGUI.
    trailgui:
       description: Basic information about the plugin.
-      
+
 permissions:
    trailgui.inventory.angryvillager:
       description: Allows the player to select the angryvillager trail in the GUI.

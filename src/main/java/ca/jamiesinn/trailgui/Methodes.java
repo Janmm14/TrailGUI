@@ -1,6 +1,11 @@
 package ca.jamiesinn.trailgui;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import ca.jamiesinn.trailgui.files.TrailData;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -10,14 +15,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+public final class Methodes {
 
-public class Methodes
-{
-    public static void clearTrails(Player player)
-    {
+    private Methodes() {
+        throw new UnsupportedOperationException();
+    }
+
+    public static void clearTrails(Player player) {
         Main.trailAngryVillager.remove(player.getUniqueId().toString());
         Main.trailCloud.remove(player.getUniqueId().toString());
         Main.trailCriticals.remove(player.getUniqueId().toString());
@@ -50,8 +54,7 @@ public class Methodes
         Main.trailIconCrack.remove(player.getUniqueId().toString());
     }
 
-    public static void saveTrails()
-    {
+    public static void saveTrails() {
         TrailData.getConfig().set("AngryVillager", Main.trailAngryVillager);
         TrailData.getConfig().set("Cloud", Main.trailCloud);
         TrailData.getConfig().set("Criticals", Main.trailCriticals);
@@ -85,292 +88,228 @@ public class Methodes
         TrailData.saveConfig();
     }
 
-    public static void restoreTrails()
-    {
-        for (String uuids : TrailData.getConfig().getStringList("AngryVillager"))
-        {
+    public static void restoreTrails() {
+        for (String uuids : TrailData.getConfig().getStringList("AngryVillager")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailAngryVillager.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Cloud"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Cloud")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailCloud.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Criticals"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Criticals")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailCriticals.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("DripLava"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("DripLava")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailDripLava.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("DripWater"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("DripWater")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailDripWater.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Enchantment"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Enchantment")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailEnchantment.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Spark"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Spark")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailSpark.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Flame"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Flame")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailFlame.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("HappyVillager"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("HappyVillager")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailHappyVillager.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("InstantSpell"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("InstantSpell")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailInstantSpell.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("LargeSmoke"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("LargeSmoke")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailLargeSmoke.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Lava"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Lava")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailLava.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("MagicCrit"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("MagicCrit")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailMagicCrit.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("MobSpell"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("MobSpell")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailMobSpell.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("MobSpellAmbient"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("MobSpellAmbient")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailMobSpellAmbient.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Note"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Note")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailNote.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Portal"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Portal")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailPortal.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("RedDust"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("RedDust")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailRedDust.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("ColoredRedDust"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("ColoredRedDust")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailColoredRedDust.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Slime"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Slime")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailSlime.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("SnowShovel"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("SnowShovel")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailSnowShovel.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("SnowballPoof"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("SnowballPoof")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailSnowballPoof.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Spell"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Spell")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailSpell.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Splash"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Splash")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailSplash.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("TownAura"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("TownAura")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailTownAura.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Wake"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Wake")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailWake.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("WitchMagic"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("WitchMagic")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailWitchMagic.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("Hearts"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("Hearts")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailHearts.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("EnderSignal"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("EnderSignal")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailEnderSignal.add(player.getUniqueId().toString());
         }
-        for (String uuids : TrailData.getConfig().getStringList("IconCrack"))
-        {
+        for (String uuids : TrailData.getConfig().getStringList("IconCrack")) {
             Player player = Bukkit.getServer().getPlayer(UUID.fromString(uuids));
-            if (player == null)
-            {
+            if (player == null) {
                 return;
             }
             Main.trailIconCrack.add(player.getUniqueId().toString());
         }
     }
 
-    public static boolean checkPerms(String trail, Player p)
-    {
+    public static boolean checkPerms(String trail, Player p) {
         return p.hasPermission("trailgui.inventory." + trail);
     }
 
-    public static int getItemSlot(String trail)
-    {
+    public static int getItemSlot(String trail) {
         return Main.getPlugin().getConfig().getInt(trail + "-inventorySlot");
     }
 
-    public static void openGUI1(Player player)
-    {
+    public static void openGUI1(Player player) {
         Inventory inv1 = Bukkit.createInventory(null, 45, Main.getPlugin().getConfig().getString("pageOneInventoryName").replaceAll("&", "§"));
 
         if (checkPerms("angryvillager", player))
@@ -488,8 +427,7 @@ public class Methodes
         player.openInventory(inv1);
     }
 
-    public static void openGUI2(Player player)
-    {
+    public static void openGUI2(Player player) {
         Inventory inv2 = Bukkit.createInventory(null, 45, Main.getPlugin().getConfig().getString("pageTwoInventoryName").replaceAll("&", "§"));
         if (checkPerms("hearts", player))
             inv2.setItem(Main.getPlugin().getConfig().getInt("Hearts-inventorySlot"), itemHearts());
@@ -510,8 +448,7 @@ public class Methodes
         player.openInventory(inv2);
     }
 
-    public static ItemStack itemNoPerms()
-    {
+    public static ItemStack itemNoPerms() {
         ItemStack i = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 14);
         ItemMeta meta = i.getItemMeta();
         meta.setDisplayName(ChatColor.RED + "You do not have this trail!");
@@ -520,8 +457,7 @@ public class Methodes
 
     }
 
-    public static ItemStack itemAngryVillager()
-    {
+    public static ItemStack itemAngryVillager() {
         ItemStack itemAngryVillager = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("AngryVillager-itemType").toUpperCase()), 1);
         ItemMeta metaAngryVillager = itemAngryVillager.getItemMeta();
 
@@ -529,8 +465,7 @@ public class Methodes
         String name2 = name1.replaceAll("&", "§");
 
         metaAngryVillager.setDisplayName(name2);
-        if (Main.getPlugin().getConfig().getBoolean("AngryVillager-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("AngryVillager-loreEnabled")) {
             List<String> loreAngryVillager = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("AngryVillager-loreLineOne").replaceAll("&", "§");
@@ -547,15 +482,13 @@ public class Methodes
         return itemAngryVillager;
     }
 
-    public static ItemStack itemCloud()
-    {
+    public static ItemStack itemCloud() {
         ItemStack itemCloud = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Cloud-itemType").toUpperCase()), 1);
         ItemMeta metaCloud = itemCloud.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Cloud-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Cloud-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Cloud-loreEnabled")) {
             List<String> loreCloud = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Cloud-loreLineOne").replaceAll("&", "§");
@@ -573,15 +506,13 @@ public class Methodes
         return itemCloud;
     }
 
-    public static ItemStack itemCriticals()
-    {
+    public static ItemStack itemCriticals() {
         ItemStack itemCriticals = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Criticals-itemType").toUpperCase()), 1);
         ItemMeta metaCriticals = itemCriticals.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Criticals-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Criticals-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Criticals-loreEnabled")) {
             List<String> loreCriticals = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Criticals-loreLineOne").replaceAll("&", "§");
@@ -599,15 +530,13 @@ public class Methodes
         return itemCriticals;
     }
 
-    public static ItemStack itemDripLava()
-    {
+    public static ItemStack itemDripLava() {
         ItemStack itemDripLava = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("DripLava-itemType").toUpperCase()), 1);
         ItemMeta metaDripLava = itemDripLava.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("DripLava-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("DripLava-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("DripLava-loreEnabled")) {
             List<String> loreDripLava = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("DripLava-loreLineOne").replaceAll("&", "§");
@@ -625,15 +554,13 @@ public class Methodes
         return itemDripLava;
     }
 
-    public static ItemStack itemDripWater()
-    {
+    public static ItemStack itemDripWater() {
         ItemStack itemDripWater = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("DripWater-itemType").toUpperCase()), 1);
         ItemMeta metaDripWater = itemDripWater.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("DripWater-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("DripWater-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("DripWater-loreEnabled")) {
             List<String> loreDripWater = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("DripWater-loreLineOne").replaceAll("&", "§");
@@ -651,15 +578,13 @@ public class Methodes
         return itemDripWater;
     }
 
-    public static ItemStack itemEnchantment()
-    {
+    public static ItemStack itemEnchantment() {
         ItemStack itemEnchantment = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Enchantment-itemType").toUpperCase()), 1);
         ItemMeta metaEnchantment = itemEnchantment.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Enchantment-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Enchantment-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Enchantment-loreEnabled")) {
             List<String> loreEnchantment = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Enchantment-loreLineOne").replaceAll("&", "§");
@@ -677,15 +602,13 @@ public class Methodes
         return itemEnchantment;
     }
 
-    public static ItemStack itemSpark()
-    {
+    public static ItemStack itemSpark() {
         ItemStack itemSpark = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Spark-itemType").toUpperCase()), 1);
         ItemMeta metaSpark = itemSpark.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Spark-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Spark-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Spark-loreEnabled")) {
             List<String> loreSpark = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Spark-loreLineOne").replaceAll("&", "§");
@@ -703,15 +626,13 @@ public class Methodes
         return itemSpark;
     }
 
-    public static ItemStack itemFlame()
-    {
+    public static ItemStack itemFlame() {
         ItemStack itemFlame = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Flame-itemType").toUpperCase()), 1);
         ItemMeta metaFlame = itemFlame.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Flame-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Flame-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Flame-loreEnabled")) {
             List<String> loreFlame = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Flame-loreLineOne").replaceAll("&", "§");
@@ -729,15 +650,13 @@ public class Methodes
         return itemFlame;
     }
 
-    public static ItemStack itemHappyVillager()
-    {
+    public static ItemStack itemHappyVillager() {
         ItemStack itemHappyVillager = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("HappyVillager-itemType").toUpperCase()), 1);
         ItemMeta metaHappyVillager = itemHappyVillager.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("HappyVillager-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("HappyVillager-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("HappyVillager-loreEnabled")) {
             List<String> loreHappyVillager = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("HappyVillager-loreLineOne").replaceAll("&", "§");
@@ -755,15 +674,13 @@ public class Methodes
         return itemHappyVillager;
     }
 
-    public static ItemStack itemInstantSpell()
-    {
+    public static ItemStack itemInstantSpell() {
         ItemStack itemInstantSpell = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("InstantSpell-itemType").toUpperCase()), 1);
         ItemMeta metaInstantSpell = itemInstantSpell.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("InstantSpell-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("InstantSpell-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("InstantSpell-loreEnabled")) {
             List<String> loreInstantSpell = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("InstantSpell-loreLineOne").replaceAll("&", "§");
@@ -781,15 +698,13 @@ public class Methodes
         return itemInstantSpell;
     }
 
-    public static ItemStack itemLargeSmoke()
-    {
+    public static ItemStack itemLargeSmoke() {
         ItemStack itemLargeSmoke = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("LargeSmoke-itemType").toUpperCase()), 1);
         ItemMeta metaLargeSmoke = itemLargeSmoke.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("LargeSmoke-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("LargeSmoke-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("LargeSmoke-loreEnabled")) {
             List<String> loreLargeSmoke = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("LargeSmoke-loreLineOne").replaceAll("&", "§");
@@ -807,15 +722,13 @@ public class Methodes
         return itemLargeSmoke;
     }
 
-    public static ItemStack itemLava()
-    {
+    public static ItemStack itemLava() {
         ItemStack itemLava = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Lava-itemType").toUpperCase()), 1);
         ItemMeta metaLava = itemLava.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Lava-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Lava-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Lava-loreEnabled")) {
             List<String> loreLava = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Lava-loreLineOne").replaceAll("&", "§");
@@ -834,15 +747,13 @@ public class Methodes
         return itemLava;
     }
 
-    public static ItemStack itemMagicCrit()
-    {
+    public static ItemStack itemMagicCrit() {
         ItemStack itemMagicCrit = new ItemStack(Material.POTION, 1);
         ItemMeta metaMagicCrit = itemMagicCrit.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("MagicCrit-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("MagicCrit-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("MagicCrit-loreEnabled")) {
             List<String> loreMagicCrit = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("MagicCrit-loreLineOne").replaceAll("&", "§");
@@ -860,15 +771,13 @@ public class Methodes
         return itemMagicCrit;
     }
 
-    public static ItemStack itemMobSpell()
-    {
+    public static ItemStack itemMobSpell() {
         ItemStack itemMobSpell = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("MobSpell-itemType").toUpperCase()), 1);
         ItemMeta metaMobSpell = itemMobSpell.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("MobSpell-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("MobSpell-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("MobSpell-loreEnabled")) {
             List<String> loreMobSpell = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("MobSpell-loreLineOne").replaceAll("&", "§");
@@ -887,15 +796,13 @@ public class Methodes
         return itemMobSpell;
     }
 
-    public static ItemStack itemMobSpellAmbient()
-    {
+    public static ItemStack itemMobSpellAmbient() {
         ItemStack itemMobSpellAmbient = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("MobSpellAmbient-itemType").toUpperCase()), 1);
         ItemMeta metaMobSpellAmbient = itemMobSpellAmbient.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("MobSpellAmbient-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("MobSpellAmbient-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("MobSpellAmbient-loreEnabled")) {
             List<String> loreMobSpellAmbient = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("MobSpellAmbient-loreLineOne").replaceAll("&", "§");
@@ -913,15 +820,13 @@ public class Methodes
         return itemMobSpellAmbient;
     }
 
-    public static ItemStack itemNote()
-    {
+    public static ItemStack itemNote() {
         ItemStack itemNote = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Note-itemType").toUpperCase()), 1);
         ItemMeta metaNote = itemNote.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Note-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Note-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Note-loreEnabled")) {
             List<String> loreNote = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Note-loreLineOne").replaceAll("&", "§");
@@ -939,15 +844,13 @@ public class Methodes
         return itemNote;
     }
 
-    public static ItemStack itemPortal()
-    {
+    public static ItemStack itemPortal() {
         ItemStack itemPortal = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Portal-itemType").toUpperCase()), 1);
         ItemMeta metaPortal = itemPortal.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Portal-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Portal-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Portal-loreEnabled")) {
             List<String> lorePortal = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Portal-loreLineOne").replaceAll("&", "§");
@@ -965,15 +868,13 @@ public class Methodes
         return itemPortal;
     }
 
-    public static ItemStack itemRedDust()
-    {
+    public static ItemStack itemRedDust() {
         ItemStack itemRedDust = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("RedDust-itemType").toUpperCase()), 1);
         ItemMeta metaRedDust = itemRedDust.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("RedDust-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("RedDust-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("RedDust-loreEnabled")) {
             List<String> loreRedDust = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("RedDust-loreLineOne").replaceAll("&", "§");
@@ -991,15 +892,13 @@ public class Methodes
         return itemRedDust;
     }
 
-    public static ItemStack itemColoredRedDust()
-    {
+    public static ItemStack itemColoredRedDust() {
         ItemStack itemColoredRedDust = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("ColoredRedDust-itemType").toUpperCase()), 1);
         ItemMeta metaColoredRedDust = itemColoredRedDust.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("ColoredRedDust-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("ColoredRedDust-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("ColoredRedDust-loreEnabled")) {
             List<String> loreColoredRedDust = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("ColoredRedDust-loreLineOne").replaceAll("&", "§");
@@ -1017,15 +916,13 @@ public class Methodes
         return itemColoredRedDust;
     }
 
-    public static ItemStack itemSlime()
-    {
+    public static ItemStack itemSlime() {
         ItemStack itemSlime = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Slime-itemType").toUpperCase()), 1);
         ItemMeta metaSlime = itemSlime.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Slime-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Slime-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Slime-loreEnabled")) {
             List<String> loreSlime = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Slime-loreLineOne").replaceAll("&", "§");
@@ -1043,15 +940,13 @@ public class Methodes
         return itemSlime;
     }
 
-    public static ItemStack itemSnowShovel()
-    {
+    public static ItemStack itemSnowShovel() {
         ItemStack itemSnowShovel = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("SnowShovel-itemType").toUpperCase()), 1);
         ItemMeta metaSnowShovel = itemSnowShovel.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("SnowShovel-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("SnowShovel-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("SnowShovel-loreEnabled")) {
             List<String> loreSnowShovel = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("SnowShovel-loreLineOne").replaceAll("&", "§");
@@ -1069,15 +964,13 @@ public class Methodes
         return itemSnowShovel;
     }
 
-    public static ItemStack itemSnowballPoof()
-    {
+    public static ItemStack itemSnowballPoof() {
         ItemStack itemSnowballPoof = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("SnowballPoof-itemType").toUpperCase()), 1);
         ItemMeta metaSnowballPoof = itemSnowballPoof.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("SnowballPoof-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("SnowballPoof-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("SnowballPoof-loreEnabled")) {
             List<String> loreSnowballPoof = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("SnowballPoof-loreLineOne").replaceAll("&", "§");
@@ -1095,15 +988,13 @@ public class Methodes
         return itemSnowballPoof;
     }
 
-    public static ItemStack itemSpell()
-    {
+    public static ItemStack itemSpell() {
         ItemStack itemSpell = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Spell-itemType").toUpperCase()), 1);
         ItemMeta metaSpell = itemSpell.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Spell-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Spell-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Spell-loreEnabled")) {
             List<String> loreSpell = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Spell-loreLineOne").replaceAll("&", "§");
@@ -1121,15 +1012,13 @@ public class Methodes
         return itemSpell;
     }
 
-    public static ItemStack itemSplash()
-    {
+    public static ItemStack itemSplash() {
         ItemStack itemSplash = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Splash-itemType").toUpperCase()), 1);
         ItemMeta metaSplash = itemSplash.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Splash-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Splash-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Splash-loreEnabled")) {
             List<String> loreSplash = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Splash-loreLineOne").replaceAll("&", "§");
@@ -1147,15 +1036,13 @@ public class Methodes
         return itemSplash;
     }
 
-    public static ItemStack itemTownAura()
-    {
+    public static ItemStack itemTownAura() {
         ItemStack itemTownAura = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("TownAura-itemType").toUpperCase()), 1);
         ItemMeta metaTownAura = itemTownAura.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("TownAura-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("TownAura-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("TownAura-loreEnabled")) {
             List<String> loreTownAura = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("TownAura-loreLineOne").replaceAll("&", "§");
@@ -1173,15 +1060,13 @@ public class Methodes
         return itemTownAura;
     }
 
-    public static ItemStack itemWake()
-    {
+    public static ItemStack itemWake() {
         ItemStack itemWake = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Wake-itemType").toUpperCase()), 1);
         ItemMeta metaWake = itemWake.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Wake-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Wake-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Wake-loreEnabled")) {
             List<String> loreWake = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Wake-loreLineOne").replaceAll("&", "§");
@@ -1199,15 +1084,13 @@ public class Methodes
         return itemWake;
     }
 
-    public static ItemStack itemWitchMagic()
-    {
+    public static ItemStack itemWitchMagic() {
         ItemStack itemWitchMagic = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("WitchMagic-itemType").toUpperCase()), 1);
         ItemMeta metaWitchMagic = itemWitchMagic.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("WitchMagic-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("WitchMagic-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("WitchMagic-loreEnabled")) {
             List<String> loreWitchMagic = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("WitchMagic-loreLineOne").replaceAll("&", "§");
@@ -1225,15 +1108,13 @@ public class Methodes
         return itemWitchMagic;
     }
 
-    public static ItemStack itemHearts()
-    {
+    public static ItemStack itemHearts() {
         ItemStack itemHearts = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Hearts-itemType").toUpperCase()), 1);
         ItemMeta metaHearts = itemHearts.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Hearts-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("Hearts-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("Hearts-loreEnabled")) {
             List<String> loreHearts = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("Hearts-loreLineOne").replaceAll("&", "§");
@@ -1251,15 +1132,13 @@ public class Methodes
         return itemHearts;
     }
 
-    public static ItemStack itemNextPage()
-    {
+    public static ItemStack itemNextPage() {
         ItemStack itemNextPage = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("NextPage-itemType").toUpperCase()), 1);
         ItemMeta metaNextPage = itemNextPage.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("NextPage-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("NextPage-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("NextPage-loreEnabled")) {
             List<String> loreNextPage = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("NextPage-loreLineOne").replaceAll("&", "§");
@@ -1277,15 +1156,13 @@ public class Methodes
         return itemNextPage;
     }
 
-    public static ItemStack itemPreviousPage()
-    {
+    public static ItemStack itemPreviousPage() {
         ItemStack itemPreviousPage = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("PreviousPage-itemType").toUpperCase()), 1);
         ItemMeta metaPreviousPage = itemPreviousPage.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("PreviousPage-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("PreviousPage-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("PreviousPage-loreEnabled")) {
             List<String> lorePreviousPage = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("PreviousPage-loreLineOne").replaceAll("&", "§");
@@ -1303,15 +1180,13 @@ public class Methodes
         return itemPreviousPage;
     }
 
-    public static ItemStack itemRemoveTrails()
-    {
+    public static ItemStack itemRemoveTrails() {
         ItemStack itemRemoveTrails = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("RemoveTrails-itemType").toUpperCase()), 1);
         ItemMeta metaRemoveTrails = itemRemoveTrails.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("RemoveTrails-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("RemoveTrails-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("RemoveTrails-loreEnabled")) {
             List<String> loreRemoveTrail = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("RemoveTrails-loreLineOne").replaceAll("&", "§");
@@ -1329,15 +1204,13 @@ public class Methodes
         return itemRemoveTrails;
     }
 
-    public static ItemStack itemEnderSignal()
-    {
+    public static ItemStack itemEnderSignal() {
         ItemStack itemEnderSignal = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("EnderSignal-itemType").toUpperCase()), 1);
         ItemMeta metaEnderSignal = itemEnderSignal.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("EnderSignal-itemName");
         String name2 = name1.replaceAll("&", "§");
-        if (Main.getPlugin().getConfig().getBoolean("EnderSignal-loreEnabled"))
-        {
+        if (Main.getPlugin().getConfig().getBoolean("EnderSignal-loreEnabled")) {
             List<String> loreEnderSignal = new ArrayList<String>();
 
             String loreLine1 = Main.getPlugin().getConfig().getString("EnderSignal-loreLineOne").replaceAll("&", "§");
@@ -1355,8 +1228,7 @@ public class Methodes
         return itemEnderSignal;
     }
 
-    public static ItemStack itemIconCrack()
-    {
+    public static ItemStack itemIconCrack() {
         ItemStack i = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("IconCrack-itemType").toUpperCase()), 1);
         ItemMeta meta = i.getItemMeta();
         meta.setDisplayName(Main.getPlugin().getConfig().getString("IconCrack-itemName"));

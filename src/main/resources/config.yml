@@ -1,5 +1,5 @@
-# (C) Copyright Coder_M 2014
-# Created by: Coder_M
+# (C) Copyright Coder_M 2014 - 2015
+# Created by: Coder_M and JamieSinn
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -23,7 +23,7 @@ disabledWorlds:
 #Whether or not the trail of the player hit will get removed. (Only when getting attacked by another player)
 removeTrailOnPlayerHit: false
 
-#Whether or not the trail will be displayed when spinning (The cursor). 
+#Whether or not the trail will be displayed when spinning (The cursor).
 disabledWhenSpinning: true
 
 #Whether or not the player can only have one trail at a time.

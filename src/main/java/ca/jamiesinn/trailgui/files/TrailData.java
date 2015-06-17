@@ -1,28 +1,24 @@
 package ca.jamiesinn.trailgui.files;
 
+import java.io.File;
+import java.io.IOException;
+
 import ca.jamiesinn.trailgui.Main;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
-import java.io.IOException;
-
-public class TrailData
-{
+public class TrailData {
     public static FileConfiguration config;
     public static File file = new File(Main.getPlugin().getDataFolder(), "TrailData");
 
-    public static void createFile()
-    {
-        if (!file.exists())
-        {
-            try
-            {
+    public static void createFile() {
+        if (!file.exists()) {
+            try {
                 file.createNewFile();
-            } catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "Failed to generate the file: TrailData");
             }
             config = YamlConfiguration.loadConfiguration(file);
@@ -60,23 +56,18 @@ public class TrailData
         }
     }
 
-    public static FileConfiguration getConfig()
-    {
+    public static FileConfiguration getConfig() {
         return config;
     }
 
-    public static void reloadConfig()
-    {
+    public static void reloadConfig() {
         config = YamlConfiguration.loadConfiguration(file);
     }
 
-    public static void saveConfig()
-    {
-        try
-        {
+    public static void saveConfig() {
+        try {
             config.save(file);
-        } catch (IOException ex)
-        {
+        } catch (IOException ex) {
             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "Could not save the file: TrailData");
         }
     }

@@ -6,13 +6,17 @@
 
     <groupId>ca.jamiesinn</groupId>
     <artifactId>TrailGUI</artifactId>
-    <version>3.4-SNAPSHOT-BREAKSPERMISSIONS</version>
+    <version>${plugin.version}-SNAPSHOT</version>
+
+    <url>http://www.spigotmc.org/resources/trailgui.1091/</url>
+
     <repositories>
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
     </repositories>
+
     <dependencies>
         <!--Bukkit API-->
         <dependency>
@@ -22,5 +26,24 @@
         </dependency>
     </dependencies>
 
+    <properties>
+        <plugin.version>3.8</plugin.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
+    <build>
+        <defaultGoal>clean install</defaultGoal>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
 </project>

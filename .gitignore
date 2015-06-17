@@ -1,5 +1,5 @@
 *.class
-TrailsGUI.iml
+*.iml
 .idea
 target
 
