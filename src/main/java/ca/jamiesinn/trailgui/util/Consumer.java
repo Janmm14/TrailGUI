@@ -38,7 +38,8 @@ package ca.jamiesinn.trailgui.util;
  * @param <T> the type of the input to the operation
  * @since 1.8
  */
-public interface Consumer<T> {
+public interface Consumer<T>
+{
 
     /**
      * Performs this operation on the given argument.

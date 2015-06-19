@@ -3,16 +3,19 @@ package ca.jamiesinn.trailgui;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.jamiesinn.trailgui.commands.TrailCommand;
-import ca.jamiesinn.trailgui.commands.TrailGUICommand;
-import ca.jamiesinn.trailgui.commands.TrailsCommand;
 import ca.jamiesinn.trailsgui.files.TrailData;
 
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin {
+import ca.jamiesinn.trailgui.commands.TrailCommand;
+import ca.jamiesinn.trailgui.commands.TrailGUICommand;
+import ca.jamiesinn.trailgui.commands.TrailsCommand;
+
+public class Main
+    extends JavaPlugin
+{
 
     @Deprecated
     public static Main plugin;
@@ -49,12 +52,14 @@ public class Main extends JavaPlugin {
     public static List<String> trailIconCrack = new ArrayList<>();
 
     @Deprecated
-    public static Main getPlugin() {
+    public static Main getPlugin()
+    {
         return plugin;
     }
 
     @Override
-    public void onEnable() {
+    public void onEnable()
+    {
         getServer().getPluginManager().registerEvents(new Listeners(this), this);
 
         final PluginCommand trailCmd = getCommand("Trail");
@@ -75,7 +80,8 @@ public class Main extends JavaPlugin {
     }
 
     @Override
-    public void onDisable() {
+    public void onDisable()
+    {
         Methodes.saveTrails();
     }
 }

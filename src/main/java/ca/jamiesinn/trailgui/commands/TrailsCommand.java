@@ -10,29 +10,37 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class TrailsCommand
-    implements CommandExecutor {
+    implements CommandExecutor
+{
     Main main;
 
-    public TrailsCommand(Main main) {
+    public TrailsCommand(Main main)
+    {
         this.main = main;
     }
 
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!(sender instanceof Player)) {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
+    {
+        if (!(sender instanceof Player))
+        {
             sender.sendMessage(ChatColor.DARK_RED + "[TrailGUI] Only players can perform this command.");
             return true;
         }
         Player player = (Player) sender;
-        for (String string : this.main.getConfig().getStringList("disabledWorlds")) {
+        for (String string : this.main.getConfig().getStringList("disabledWorlds"))
+        {
             string.replace("[", "");
             string.replace("]", "");
-            if (string.equals(player.getWorld().getName())) {
+            if (string.equals(player.getWorld().getName()))
+            {
                 player.sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "TrailGUI" + ChatColor.DARK_GRAY + "] " + ChatColor.GREEN + "You cannot use this command in this world.");
                 return false;
             }
-            if (!player.hasPermission("trailgui.commands.trails")) {
+            if (!player.hasPermission("trailgui.commands.trails"))
+            {
                 player.sendMessage(Main.getPlugin().getConfig().getString("Commands-denyPermissionMessage").replaceAll("&", "§"));
-                if (Main.getPlugin().getConfig().getBoolean("closeInventoryOnDenyPermission")) {
+                if (Main.getPlugin().getConfig().getBoolean("closeInventoryOnDenyPermission"))
+                {
                     player.closeInventory();
                 }
                 return false;
