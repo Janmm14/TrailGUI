@@ -25,7 +25,7 @@
  * or visit www.oracle.com if you need additional information or have any
  * questions.
  */
-package ca.jamiesinn.trailsgui.util;
+package ca.jamiesinn.trailgui.util;
 
 /**
  * Represents an operation that accepts a single input argument and returns no

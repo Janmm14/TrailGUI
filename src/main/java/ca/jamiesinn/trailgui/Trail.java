@@ -1,4 +1,4 @@
-package ca.jamiesinn.trailsgui;
+package ca.jamiesinn.trailgui;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -6,11 +6,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import ca.jamiesinn.trailsgui.util.Consumer;
-
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import ca.jamiesinn.trailgui.util.Consumer;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;

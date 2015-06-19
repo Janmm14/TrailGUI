@@ -1,4 +1,4 @@
-package ca.jamiesinn.trailsgui;
+package ca.jamiesinn.trailgui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import ca.jamiesinn.trailsgui.util.Consumer;
+import ca.jamiesinn.trailgui.util.Consumer;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
