@@ -10,10 +10,15 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import ca.jamiesinn.trailgui.Main;
 
-public class TrailData
+public final class TrailData
 {
     public static FileConfiguration config;
     public static File file = new File(Main.getPlugin().getDataFolder(), "TrailData");
+
+    private TrailData()
+    {
+        throw new UnsupportedOperationException();
+    }
 
     public static void createFile()
     {
@@ -24,7 +29,7 @@ public class TrailData
                 file.createNewFile();
             } catch (Exception ex)
             {
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "Failed to generate the file: TrailData");
+                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "Failed to generate the file: TrailData (error: " + ex.getMessage() + ')');
             }
             config = YamlConfiguration.loadConfiguration(file);
             config.createSection("AngryVillager");
@@ -78,7 +83,7 @@ public class TrailData
             config.save(file);
         } catch (IOException ex)
         {
-            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "Could not save the file: TrailData");
+            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "Could not save the file: TrailData (error: " + ex.getMessage() + ')');
         }
     }
 }
