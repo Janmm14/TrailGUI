@@ -1,13 +1,13 @@
 package ca.jamiesinn.trailgui.commands;
 
-import ca.jamiesinn.trailsgui.Main;
-import ca.jamiesinn.trailsgui.files.TrailData;
-
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import ca.jamiesinn.trailgui.Main;
+import ca.jamiesinn.trailgui.files.TrailData;
 
 public class TrailGUICommand
     implements CommandExecutor

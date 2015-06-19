@@ -3,8 +3,6 @@ package ca.jamiesinn.trailgui;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.jamiesinn.trailsgui.files.TrailData;
-
 import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import ca.jamiesinn.trailgui.commands.TrailCommand;
 import ca.jamiesinn.trailgui.commands.TrailGUICommand;
 import ca.jamiesinn.trailgui.commands.TrailsCommand;
+import ca.jamiesinn.trailgui.files.TrailData;
 
 public class Main
     extends JavaPlugin
