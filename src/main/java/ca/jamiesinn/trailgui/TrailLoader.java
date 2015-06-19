@@ -24,7 +24,7 @@ public final class TrailLoader
 
     private final Main main;
 
-    private final Cache<UUID, Long> cooldownAngryVillager;
+    private final Cache<UUID, Long> cooldownAngryVillager, cooldownEnderSignal, cooldownHearts, cooldownNote;
 
     public TrailLoader(Main main)
     {
@@ -32,6 +32,24 @@ public final class TrailLoader
         cooldownAngryVillager = CacheBuilder.newBuilder()
             .concurrencyLevel(4)
             .expireAfterWrite(getTrailOption("AngryVillager", "cooldown") * 50, TimeUnit.MILLISECONDS) //https://www.google.de/search?q=1+second+%2F+20
+            .initialCapacity(50)
+            .maximumSize(Long.MAX_VALUE)
+            .build();
+        cooldownEnderSignal = CacheBuilder.newBuilder()
+            .concurrencyLevel(4)
+            .expireAfterWrite(getTrailOption("EnderSignal", "cooldown") * 50, TimeUnit.MILLISECONDS)
+            .initialCapacity(50)
+            .maximumSize(Long.MAX_VALUE)
+            .build();
+        cooldownHearts = CacheBuilder.newBuilder()
+            .concurrencyLevel(4)
+            .expireAfterWrite(getTrailOption("Hearts", "cooldown") * 50, TimeUnit.MILLISECONDS)
+            .initialCapacity(50)
+            .maximumSize(Long.MAX_VALUE)
+            .build();
+        cooldownNote = CacheBuilder.newBuilder()
+            .concurrencyLevel(4)
+            .expireAfterWrite(getTrailOption("Note", "cooldown") * 50, TimeUnit.MILLISECONDS)
             .initialCapacity(50)
             .maximumSize(Long.MAX_VALUE)
             .build();
