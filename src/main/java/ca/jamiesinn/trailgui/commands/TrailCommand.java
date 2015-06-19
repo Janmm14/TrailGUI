@@ -18,8 +18,8 @@ import ca.jamiesinn.trailgui.Methodes;
 public class TrailCommand
     implements CommandExecutor, TabCompleter
 {
-    List<String> trailList1 = new ArrayList();
-    List<String> trailList2 = new ArrayList();
+    List<String> trailList1 = new ArrayList<>();
+    List<String> trailList2 = new ArrayList<>();
     Main main;
 
     public TrailCommand(Main main)
