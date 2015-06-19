@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import ca.jamiesinn.trailgui.libraries.ParticleEffect;
 import ca.jamiesinn.trailgui.util.Consumer;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -49,6 +50,7 @@ public final class TrailLoader
                 public void accept(Player player)
                 {
                     Location loc = player.getLocation();
+                    ParticleEffect.CLOUD.display(0, 0, 0, 0, getTrailOption("Cloud", "amount"), loc.add(0, getTrailOption("Cloud", "displayLocation"), 0), getTrailOption("Cloud", "range"));
                 }
             })
             .put("Criticals", new Consumer<Player>()
