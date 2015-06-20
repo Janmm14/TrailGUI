@@ -1,5 +1,6 @@
 package ca.jamiesinn.trailgui;
 
+import javax.management.InstanceAlreadyExistsException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,7 +18,7 @@ import com.google.common.collect.SetMultimap;
 public class Trail
 {
 
-    private static final Map<String, Trail> trails = Maps.newHashMapWithExpectedSize(50); //TODO set correct trail number
+    private static final Map<String, Trail> trails = Maps.newHashMapWithExpectedSize(30); //change when you add a trail!
     private static final SetMultimap<UUID, Trail> trailsByUuid = HashMultimap.create();
 
     public static Collection<Trail> getTrails()
@@ -32,6 +33,7 @@ public class Trail
 
     public static Trail getTrail(String name)
     {
+        name = name.toLowerCase().trim().intern();
         return trails.get(name);
     }
 
@@ -69,6 +71,10 @@ public class Trail
 
     public Trail(String name, String permission, ItemStack item, Consumer<Player> trailDrawer)
     {
+        name = name.toLowerCase().trim().intern();
+        if (trails.containsKey(name)) {
+            throw new RuntimeException(new InstanceAlreadyExistsException("A trail with the name " + name + " was already added!"));
+        }
         this.name = name;
         this.permission = permission;
         this.item = item;

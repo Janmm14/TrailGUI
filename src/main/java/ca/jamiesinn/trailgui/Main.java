@@ -13,6 +13,7 @@ import ca.jamiesinn.trailgui.commands.TrailCommand;
 import ca.jamiesinn.trailgui.commands.TrailGUICommand;
 import ca.jamiesinn.trailgui.commands.TrailsCommand;
 import ca.jamiesinn.trailgui.files.TrailData;
+import com.google.common.collect.Lists;
 
 public class Main
     extends JavaPlugin
@@ -74,10 +75,49 @@ public class Main
 
     private void enableNew()
     {
+        getConfig().options().copyDefaults(true);
+        convertConfig();
+        saveDefaultConfig();
+
         new TrailLoader(this).loadTrails();
         getServer().getPluginManager().registerEvents(new MovementListener(this), this);
         //TODO
         enableCommon();
+    }
+
+    private void convertConfig()
+    {
+        addTrailDefault("AngryVillager");
+        addTrailDefault("Cloud");
+        addTrailDefault("Criticals");
+        addTrailDefault("DripLava");
+        addTrailDefault("DripWater");
+        addTrailDefault("Enchantment");
+        addTrailDefault("Spark");
+        addTrailDefault("Flame");
+        addTrailDefault("HappyVillager");
+        addTrailDefault("InstantSpell");
+        addTrailDefault("LargeSmoke");
+        addTrailDefault("Lava");
+        addTrailDefault("MagicCrit");
+        addTrailDefault("MobSpell");
+        addTrailDefault("MobSpellAmbient");
+        addTrailDefault("Note");
+        addTrailDefault("Portal");
+        addTrailDefault("RedDust");
+        addTrailDefault("ColoredRedDust");
+        addTrailDefault("Slime");
+        addTrailDefault("SnowShovel");
+        addTrailDefault("SnowballPoof");
+        addTrailDefault("Spell");
+        addTrailDefault("Splash");
+        addTrailDefault("TownAura");
+        addTrailDefault("Wake");
+        addTrailDefault("WitchMagic");
+        addTrailDefault("Hearts");
+        addTrailDefault("EnderSignal");
+        addTrailDefault("IconCrack");
+
     }
 
     private void enableOld()
@@ -85,6 +125,9 @@ public class Main
         getServer().getPluginManager().registerEvents(new Listeners(this), this);
 
         enableCommon();
+
+        getConfig().options().copyDefaults(true);
+        saveDefaultConfig();
 
         TrailData.createFile();
         TrailData.config = YamlConfiguration.loadConfiguration(TrailData.file);
@@ -99,10 +142,50 @@ public class Main
 
         getCommand("Trails").setExecutor(new TrailsCommand(this));
         getCommand("TrailGUI").setExecutor(new TrailGUICommand(this));
+    }
 
-        getConfig().options().copyDefaults(true);
-        saveDefaultConfig();
+    private void addTrailDefault(String trailName, String... extraOpts)
+    {
+        getConfig().addDefault(trailName + ".item.type", getConfig().getString(trailName + "-itemType"));
+        getConfig().addDefault(trailName + ".item.data", 0);
+        getConfig().addDefault(trailName + ".item.slot", getConfig().getString(trailName + "-inventorySlot"));
+        getConfig().addDefault(trailName + ".item.name", getConfig().getString(trailName + "-itemName"));
+        getConfig().addDefault(trailName + ".item.lore", getConfig().getString(trailName + "-itemName"));
 
+    }
+
+    private List<String> getOldLoreCfg(String trailName)
+    {
+        if (getConfig().getBoolean(trailName + "-loreEnabled"))
+        {
+            String loreLine1 = getConfig().getString(trailName + "-loreLineOne");
+            String loreLine2 = getConfig().getString(trailName + "-loreLineTwo");
+            String loreLine3 = getConfig().getString(trailName + "-loreLineThree");
+            if (loreLine1 == null || loreLine1.isEmpty()) {
+                return Lists.newArrayList();
+            } else
+            {
+                if (loreLine2 == null || loreLine2.isEmpty())
+                {
+                    if (loreLine3 == null || loreLine3.isEmpty())
+                    {
+                        return Lists.newArrayList(loreLine1);
+                    } else
+                    {
+                        return Lists.newArrayList(loreLine1);
+                    }
+                } else
+                {
+                    if (loreLine3 == null || loreLine3.isEmpty())
+                    {
+
+                    } else {
+
+                    }
+                }
+            }
+        }
+        return Lists.newArrayList();
     }
 
     private <T extends CommandExecutor & TabCompleter> T setExecutorAndCompleter(String cmdName, T handler)
@@ -116,9 +199,11 @@ public class Main
     @Override
     public void onDisable()
     {
-        if (useOldSystem) {
+        if (useOldSystem)
+        {
             Methodes.saveTrails();
-        } else {
+        } else
+        {
             //TODO
         }
     }

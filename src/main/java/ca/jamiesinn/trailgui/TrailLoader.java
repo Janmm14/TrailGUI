@@ -28,23 +28,28 @@ public final class TrailLoader
 
     private final Cache<UUID, Long> cooldownAngryVillager, cooldownEnderSignal, cooldownHearts, cooldownNote;
 
-    public TrailLoader(final Main main)
+    private static CacheBuilder<Object, Object> builderWithDefaultOpts()
     {
-        this.main = main;
-        CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder()
+        return CacheBuilder.newBuilder()
             .concurrencyLevel(2)
             .initialCapacity(50)
             .maximumSize(Long.MAX_VALUE);
-        cooldownAngryVillager = builder
+    }
+
+    public TrailLoader(final Main main)
+    {
+        this.main = main;
+
+        cooldownAngryVillager = builderWithDefaultOpts()
             .expireAfterWrite(getTrailOption("AngryVillager", "cooldown") * 50, TimeUnit.MILLISECONDS) //https://www.google.de/search?q=1+second+%2F+20
             .build();
-        cooldownEnderSignal = builder
+        cooldownEnderSignal = builderWithDefaultOpts()
             .expireAfterWrite(getTrailOption("EnderSignal", "cooldown") * 50, TimeUnit.MILLISECONDS)
             .build();
-        cooldownHearts = builder
+        cooldownHearts = builderWithDefaultOpts()
             .expireAfterWrite(getTrailOption("Hearts", "cooldown") * 50, TimeUnit.MILLISECONDS)
             .build();
-        cooldownNote = builder
+        cooldownNote = builderWithDefaultOpts()
             .expireAfterWrite(getTrailOption("Note", "cooldown") * 50, TimeUnit.MILLISECONDS)
             .build();
         TRAILS = ImmutableMap.<String, Consumer<Player>>builder()
@@ -53,7 +58,7 @@ public final class TrailLoader
                 @Override
                 public void accept(Player player)
                 {
-                    Location loc = player.getLocation().add(0.0D, getTrailOption("AngryVillager", "displayLocation"), 0.0D);
+                    Location loc = player.getLocation().add(0.0D, getTrailOption("AngryVillager", "displayLocation"), 0.0D); //TODO put cooldown related into method
                     final UUID uuid = player.getUniqueId();
                     final Long lastUsed = cooldownAngryVillager.getIfPresent(uuid);
                     final long timeMillis = System.currentTimeMillis();
@@ -108,7 +113,7 @@ public final class TrailLoader
                 public void accept(Player player)
                 {
                     Location loc = player.getLocation().add(0, getTrailOption("Enchantment", "displayLocation"), 0);
-                    ParticleEffect.ENCHANTMENT_TABLE.display(0, 0, 0, getTrailOption("Enchantment", "Enchantment-speed"), getTrailOption("Enchantment", "amount"), player.getLocation().add(0.0D, getTrailOption("Enchantment", "displayLocation"), 0.0D), getTrailOption("Enchantment", "range"));
+                    ParticleEffect.ENCHANTMENT_TABLE.display(0, 0, 0, getTrailOption("Enchantment", "Enchantment-speed"), getTrailOption("Enchantment", "amount"), loc, getTrailOption("Enchantment", "range"));
                 }
             })
             .put("Spark", new Consumer<Player>()
@@ -306,6 +311,7 @@ public final class TrailLoader
                 }
             })
             .build();
+        System.out.println("TRAILS amount: " + TRAILS.size());
     }
 
     public void loadTrails()
@@ -319,7 +325,7 @@ public final class TrailLoader
 
     private ItemStack loadItem(String trailName)
     {
-        final Material material = Material.matchMaterial(main.getConfig().getString(trailName + ".itemtype"));
+        final Material material = Material.matchMaterial(main.getConfig().getString(trailName + ".item.type"));
         final int data = main.getConfig().getInt(trailName + ".item.data");
         ItemStack is = new ItemStack(material, 1, (short) data);
         final ItemMeta im = is.getItemMeta();
@@ -332,12 +338,19 @@ public final class TrailLoader
         //convert lore color code
         if (lore != null && !lore.isEmpty())
         {
-            List<String> newLore = new ArrayList<>(lore.size());
-            for (String line : lore)
+            final String firstLoreLine = lore.get(0);
+            if (firstLoreLine != null && !firstLoreLine.isEmpty())
             {
-                newLore.add(ChatColor.translateAlternateColorCodes('&', line));
+                List<String> newLore = new ArrayList<>(lore.size());
+                for (String line : lore)
+                {
+                    if (!line.isEmpty())
+                    {
+                        newLore.add(ChatColor.translateAlternateColorCodes('&', line));
+                    }
+                }
+                im.setLore(newLore);
             }
-            im.setLore(newLore);
         }
         is.setItemMeta(im);
         return is;
