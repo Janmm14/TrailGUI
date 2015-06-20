@@ -1208,7 +1208,7 @@ public class Listeners
         }
         if (Main.trailCloud.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.CLOUD.display(0.0F, 0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Cloud-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Cloud-displayLocation"), 0.0D), this.main.getConfig().getInt("Cloud-range"));
+            ParticleEffect.CLOUD.display(0, 0, 0, 0, this.main.getConfig().getInt("Cloud-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Cloud-displayLocation"), 0.0D), this.main.getConfig().getInt("Cloud-range"));
         }
         if (Main.trailAngryVillager.contains(player.getUniqueId().toString()))
         {
@@ -1216,7 +1216,7 @@ public class Listeners
             {
                 return;
             }
-            ParticleEffect.VILLAGER_ANGRY.display(0.0F, 0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("AngryVillager-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("AngryVillager-displayLocation"), 0.0D), this.main.getConfig().getInt("AngryVillager-range"));
+            ParticleEffect.VILLAGER_ANGRY.display(0, 0, 0, 0, this.main.getConfig().getInt("AngryVillager-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("AngryVillager-displayLocation"), 0.0D), this.main.getConfig().getInt("AngryVillager-range"));
             cooldownAngryVillager.add(player.getUniqueId().toString());
 
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this.main, new Runnable()
@@ -1225,59 +1225,59 @@ public class Listeners
                 {
                     Listeners.cooldownAngryVillager.remove(player.getUniqueId().toString());
                 }
-            }, this.main.getConfig().getInt("AngryVillager-cooldown") * 1);
+            }, this.main.getConfig().getInt("AngryVillager-cooldown"));
         }
         if (Main.trailCriticals.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.CRIT.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Criticals-speed"), this.main.getConfig().getInt("Criticals-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Criticals-displayLocation"), 0.0D), this.main.getConfig().getInt("Criticals-range"));
+            ParticleEffect.CRIT.display(0, 0, 0, this.main.getConfig().getInt("Criticals-speed"), this.main.getConfig().getInt("Criticals-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Criticals-displayLocation"), 0.0D), this.main.getConfig().getInt("Criticals-range"));
         }
         if (Main.trailDripLava.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.DRIP_LAVA.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("DripLava-speed"), this.main.getConfig().getInt("DripLava-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("DripLava-displayLocation"), 0.0D), this.main.getConfig().getInt("DripLava-range"));
+            ParticleEffect.DRIP_LAVA.display(0, 0, 0, this.main.getConfig().getInt("DripLava-speed"), this.main.getConfig().getInt("DripLava-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("DripLava-displayLocation"), 0.0D), this.main.getConfig().getInt("DripLava-range"));
         }
         if (Main.trailDripWater.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.DRIP_WATER.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("DripWater-speed"), this.main.getConfig().getInt("DripWater-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("DripWater-displayLocation"), 0.0D), this.main.getConfig().getInt("DripWater-range"));
+            ParticleEffect.DRIP_WATER.display(0, 0, 0, this.main.getConfig().getInt("DripWater-speed"), this.main.getConfig().getInt("DripWater-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("DripWater-displayLocation"), 0.0D), this.main.getConfig().getInt("DripWater-range"));
         }
         if (Main.trailEnchantment.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.ENCHANTMENT_TABLE.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Enchantment-speed"), this.main.getConfig().getInt("Enchantment-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Enchantment-displayLocation"), 0.0D), this.main.getConfig().getInt("Enchantment-range"));
+            ParticleEffect.ENCHANTMENT_TABLE.display(0, 0, 0, this.main.getConfig().getInt("Enchantment-speed"), this.main.getConfig().getInt("Enchantment-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Enchantment-displayLocation"), 0.0D), this.main.getConfig().getInt("Enchantment-range"));
         }
         if (Main.trailSpark.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.FIREWORKS_SPARK.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Spark-speed"), this.main.getConfig().getInt("Spark-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Spark-displayLocation"), 0.0D), this.main.getConfig().getInt("Spark-range"));
+            ParticleEffect.FIREWORKS_SPARK.display(0, 0, 0, this.main.getConfig().getInt("Spark-speed"), this.main.getConfig().getInt("Spark-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Spark-displayLocation"), 0.0D), this.main.getConfig().getInt("Spark-range"));
         }
         if (Main.trailFlame.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.FLAME.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Flame-speed"), this.main.getConfig().getInt("Flame-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Flame-displayLocation"), 0.0D), this.main.getConfig().getInt("Flame-range"));
+            ParticleEffect.FLAME.display(0, 0, 0, this.main.getConfig().getInt("Flame-speed"), this.main.getConfig().getInt("Flame-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Flame-displayLocation"), 0.0D), this.main.getConfig().getInt("Flame-range"));
         }
         if (Main.trailHappyVillager.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.VILLAGER_HAPPY.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("HappyVillager-speed"), this.main.getConfig().getInt("HappyVillager-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("HappyVillager-displayLocation"), 0.0D), this.main.getConfig().getInt("HappyVillager-range"));
+            ParticleEffect.VILLAGER_HAPPY.display(0, 0, 0, this.main.getConfig().getInt("HappyVillager-speed"), this.main.getConfig().getInt("HappyVillager-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("HappyVillager-displayLocation"), 0.0D), this.main.getConfig().getInt("HappyVillager-range"));
         }
         if (Main.trailInstantSpell.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.SPELL_INSTANT.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("InstantSpell-speed"), this.main.getConfig().getInt("InstantSpell-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("InstantSpell-displayLocation"), 0.0D), this.main.getConfig().getInt("InstantSpell-range"));
+            ParticleEffect.SPELL_INSTANT.display(0, 0, 0, this.main.getConfig().getInt("InstantSpell-speed"), this.main.getConfig().getInt("InstantSpell-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("InstantSpell-displayLocation"), 0.0D), this.main.getConfig().getInt("InstantSpell-range"));
         }
         if (Main.trailLargeSmoke.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.SMOKE_LARGE.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("LargeSmoke-speed"), this.main.getConfig().getInt("LargeSmoke-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("LargeSmoke-displayLocation"), 0.0D), this.main.getConfig().getInt("LargeSmoke-range"));
+            ParticleEffect.SMOKE_LARGE.display(0, 0, 0, this.main.getConfig().getInt("LargeSmoke-speed"), this.main.getConfig().getInt("LargeSmoke-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("LargeSmoke-displayLocation"), 0.0D), this.main.getConfig().getInt("LargeSmoke-range"));
         }
         if (Main.trailLava.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.LAVA.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Lava-speed"), this.main.getConfig().getInt("Lava-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Lava-displayLocation"), 0.0D), this.main.getConfig().getInt("Lava-range"));
+            ParticleEffect.LAVA.display(0, 0, 0, this.main.getConfig().getInt("Lava-speed"), this.main.getConfig().getInt("Lava-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Lava-displayLocation"), 0.0D), this.main.getConfig().getInt("Lava-range"));
         }
         if (Main.trailMagicCrit.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.CRIT_MAGIC.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("MagicCrit-speed"), this.main.getConfig().getInt("MagicCrit-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("MagicCrit-displayLocation"), 0.0D), this.main.getConfig().getInt("MagicCrit-range"));
+            ParticleEffect.CRIT_MAGIC.display(0, 0, 0, this.main.getConfig().getInt("MagicCrit-speed"), this.main.getConfig().getInt("MagicCrit-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("MagicCrit-displayLocation"), 0.0D), this.main.getConfig().getInt("MagicCrit-range"));
         }
         if (Main.trailMobSpell.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.SPELL_MOB.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("MobSpell-speed"), this.main.getConfig().getInt("MobSpell-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("MobSpell-displayLocation"), 0.0D), this.main.getConfig().getInt("MobSpell-range"));
+            ParticleEffect.SPELL_MOB.display(0, 0, 0, this.main.getConfig().getInt("MobSpell-speed"), this.main.getConfig().getInt("MobSpell-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("MobSpell-displayLocation"), 0.0D), this.main.getConfig().getInt("MobSpell-range"));
         }
         if (Main.trailMobSpellAmbient.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.SPELL_MOB_AMBIENT.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("MobSpellAmbient-speed"), this.main.getConfig().getInt("MobSpellAmbient-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("MobSpellAmbient-displayLocation"), 0.0D), this.main.getConfig().getInt("MobSpellAmbient-range"));
+            ParticleEffect.SPELL_MOB_AMBIENT.display(0, 0, 0, this.main.getConfig().getInt("MobSpellAmbient-speed"), this.main.getConfig().getInt("MobSpellAmbient-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("MobSpellAmbient-displayLocation"), 0.0D), this.main.getConfig().getInt("MobSpellAmbient-range"));
         }
         if (Main.trailNote.contains(player.getUniqueId().toString()))
         {
@@ -1285,7 +1285,7 @@ public class Listeners
             {
                 return;
             }
-            ParticleEffect.NOTE.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Note-speed"), this.main.getConfig().getInt("Note-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Note-displayLocation"), 0.0D), this.main.getConfig().getInt("Note-range"));
+            ParticleEffect.NOTE.display(0, 0, 0, this.main.getConfig().getInt("Note-speed"), this.main.getConfig().getInt("Note-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Note-displayLocation"), 0.0D), this.main.getConfig().getInt("Note-range"));
             cooldownNote.add(player.getUniqueId().toString());
 
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this.main, new Runnable()
@@ -1298,47 +1298,47 @@ public class Listeners
         }
         if (Main.trailPortal.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.PORTAL.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Portal-speed"), this.main.getConfig().getInt("Portal-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Portal-displayLocation"), 0.0D), this.main.getConfig().getInt("Portal-range"));
+            ParticleEffect.PORTAL.display(0, 0, 0, this.main.getConfig().getInt("Portal-speed"), this.main.getConfig().getInt("Portal-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Portal-displayLocation"), 0.0D), this.main.getConfig().getInt("Portal-range"));
         }
         if (Main.trailRedDust.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.REDSTONE.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("RedDust-speed"), this.main.getConfig().getInt("RedDust-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("RedDust-displayLocation"), 0.0D), this.main.getConfig().getInt("RedDust-range"));
+            ParticleEffect.REDSTONE.display(0, 0, 0, this.main.getConfig().getInt("RedDust-speed"), this.main.getConfig().getInt("RedDust-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("RedDust-displayLocation"), 0.0D), this.main.getConfig().getInt("RedDust-range"));
         }
         if (Main.trailColoredRedDust.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.REDSTONE.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("ColoredRedDust-speed"), this.main.getConfig().getInt("ColoredRedDust-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("ColoredRedDust-displayLocation"), 0.0D), this.main.getConfig().getInt("ColoredRedDust-range"));
+            ParticleEffect.REDSTONE.display(0, 0, 0, this.main.getConfig().getInt("ColoredRedDust-speed"), this.main.getConfig().getInt("ColoredRedDust-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("ColoredRedDust-displayLocation"), 0.0D), this.main.getConfig().getInt("ColoredRedDust-range"));
         }
         if (Main.trailSlime.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.SLIME.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Slime-speed"), this.main.getConfig().getInt("Slime-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Slime-displayLocation"), 0.0D), this.main.getConfig().getInt("Slime-range"));
+            ParticleEffect.SLIME.display(0, 0, 0, this.main.getConfig().getInt("Slime-speed"), this.main.getConfig().getInt("Slime-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Slime-displayLocation"), 0.0D), this.main.getConfig().getInt("Slime-range"));
         }
         if (Main.trailSnowShovel.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.SNOW_SHOVEL.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("SnowShovel-speed"), this.main.getConfig().getInt("SnowShovel-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("SnowShovel-displayLocation"), 0.0D), this.main.getConfig().getInt("SnowShovel-range"));
+            ParticleEffect.SNOW_SHOVEL.display(0, 0, 0, this.main.getConfig().getInt("SnowShovel-speed"), this.main.getConfig().getInt("SnowShovel-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("SnowShovel-displayLocation"), 0.0D), this.main.getConfig().getInt("SnowShovel-range"));
         }
         if (Main.trailSnowballPoof.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.SNOWBALL.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("SnowballPoof-speed"), this.main.getConfig().getInt("SnowballPoof-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("SnowballPoof-displayLocation"), 0.0D), this.main.getConfig().getInt("SnowballPoof-range"));
+            ParticleEffect.SNOWBALL.display(0, 0, 0, this.main.getConfig().getInt("SnowballPoof-speed"), this.main.getConfig().getInt("SnowballPoof-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("SnowballPoof-displayLocation"), 0.0D), this.main.getConfig().getInt("SnowballPoof-range"));
         }
         if (Main.trailSpell.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.SPELL.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Spell-speed"), this.main.getConfig().getInt("Spell-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Spell-displayLocation"), 0.0D), this.main.getConfig().getInt("Spell-range"));
+            ParticleEffect.SPELL.display(0, 0, 0, this.main.getConfig().getInt("Spell-speed"), this.main.getConfig().getInt("Spell-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Spell-displayLocation"), 0.0D), this.main.getConfig().getInt("Spell-range"));
         }
         if (Main.trailSplash.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.WATER_SPLASH.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Splash-speed"), this.main.getConfig().getInt("Splash-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Splash-displayLocation"), 0.0D), this.main.getConfig().getInt("Splash-range"));
+            ParticleEffect.WATER_SPLASH.display(0, 0, 0, this.main.getConfig().getInt("Splash-speed"), this.main.getConfig().getInt("Splash-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Splash-displayLocation"), 0.0D), this.main.getConfig().getInt("Splash-range"));
         }
         if (Main.trailTownAura.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.TOWN_AURA.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("TownAura-speed"), this.main.getConfig().getInt("TownAura-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("TownAura-displayLocation"), 0.0D), this.main.getConfig().getInt("TownAura-range"));
+            ParticleEffect.TOWN_AURA.display(0, 0, 0, this.main.getConfig().getInt("TownAura-speed"), this.main.getConfig().getInt("TownAura-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("TownAura-displayLocation"), 0.0D), this.main.getConfig().getInt("TownAura-range"));
         }
         if (Main.trailWake.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.WATER_WAKE.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Wake-speed"), this.main.getConfig().getInt("Wake-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Wake-displayLocation"), 0.0D), this.main.getConfig().getInt("Wake-range"));
+            ParticleEffect.WATER_WAKE.display(0, 0, 0, this.main.getConfig().getInt("Wake-speed"), this.main.getConfig().getInt("Wake-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Wake-displayLocation"), 0.0D), this.main.getConfig().getInt("Wake-range"));
         }
         if (Main.trailWitchMagic.contains(player.getUniqueId().toString()))
         {
-            ParticleEffect.SPELL_WITCH.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("WitchMagic-speed"), this.main.getConfig().getInt("WitchMagic-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("WitchMagic-displayLocation"), 0.0D), this.main.getConfig().getInt("WitchMagic-range"));
+            ParticleEffect.SPELL_WITCH.display(0, 0, 0, this.main.getConfig().getInt("WitchMagic-speed"), this.main.getConfig().getInt("WitchMagic-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("WitchMagic-displayLocation"), 0.0D), this.main.getConfig().getInt("WitchMagic-range"));
         }
         if (Main.trailHearts.contains(player.getUniqueId().toString()))
         {
@@ -1346,7 +1346,7 @@ public class Listeners
             {
                 return;
             }
-            ParticleEffect.HEART.display(0.0F, 0.0F, 0.0F, this.main.getConfig().getInt("Hearts-speed"), this.main.getConfig().getInt("Hearts-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Hearts-displayLocation"), 0.0D), this.main.getConfig().getInt("Hearts-range"));
+            ParticleEffect.HEART.display(0, 0, 0, this.main.getConfig().getInt("Hearts-speed"), this.main.getConfig().getInt("Hearts-amount"), player.getLocation().add(0.0D, this.main.getConfig().getDouble("Hearts-displayLocation"), 0.0D), this.main.getConfig().getInt("Hearts-range"));
             cooldownHearts.add(player.getUniqueId().toString());
 
             Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(this.main, new Runnable()

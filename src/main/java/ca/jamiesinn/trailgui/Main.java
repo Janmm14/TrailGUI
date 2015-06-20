@@ -3,7 +3,9 @@ package ca.jamiesinn.trailgui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,6 +17,8 @@ import ca.jamiesinn.trailgui.files.TrailData;
 public class Main
     extends JavaPlugin
 {
+
+    private static final boolean useOldSystem = false;
 
     @Deprecated
     public static Main plugin;
@@ -59,12 +63,39 @@ public class Main
     @Override
     public void onEnable()
     {
+        if (useOldSystem)
+        {
+            enableOld();
+        } else
+        {
+            enableNew();
+        }
+    }
+
+    private void enableNew()
+    {
+        new TrailLoader(this).loadTrails();
+        getServer().getPluginManager().registerEvents(new MovementListener(this), this);
+        //TODO
+        enableCommon();
+    }
+
+    private void enableOld()
+    {
         getServer().getPluginManager().registerEvents(new Listeners(this), this);
 
-        final PluginCommand trailCmd = getCommand("Trail");
-        final TrailCommand trailExecutor = new TrailCommand(this);
-        trailCmd.setExecutor(trailExecutor);
-        trailCmd.setTabCompleter(trailExecutor);
+        enableCommon();
+
+        TrailData.createFile();
+        TrailData.config = YamlConfiguration.loadConfiguration(TrailData.file);
+        Methodes.restoreTrails();
+    }
+
+    private void enableCommon()
+    {
+        plugin = this;
+
+        setExecutorAndCompleter("Trail", new TrailCommand(this));
 
         getCommand("Trails").setExecutor(new TrailsCommand(this));
         getCommand("TrailGUI").setExecutor(new TrailGUICommand(this));
@@ -72,15 +103,23 @@ public class Main
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
 
-        plugin = this;
-        TrailData.createFile();
-        TrailData.config = YamlConfiguration.loadConfiguration(TrailData.file);
-        Methodes.restoreTrails();
+    }
+
+    private <T extends CommandExecutor & TabCompleter> T setExecutorAndCompleter(String cmdName, T handler)
+    {
+        final PluginCommand cmd = getCommand(cmdName);
+        cmd.setExecutor(handler);
+        cmd.setTabCompleter(handler);
+        return handler;
     }
 
     @Override
     public void onDisable()
     {
-        Methodes.saveTrails();
+        if (useOldSystem) {
+            Methodes.saveTrails();
+        } else {
+            //TODO
+        }
     }
 }
