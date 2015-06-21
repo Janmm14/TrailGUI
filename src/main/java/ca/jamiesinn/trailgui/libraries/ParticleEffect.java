@@ -210,7 +210,8 @@ public enum ParticleEffect
         {
             throw new IllegalArgumentException("There is no water at the center location");
         }
-        new ParticlePacket(this, offsetX, offsetY, offsetZ, speed, amount, isLongDistance(center, players), null).sendTo(center, players);
+        new ParticlePacket(this, offsetX, offsetY, offsetZ, speed, amount, isLongDistance(center, players), null)
+            .sendTo(center, players);
     }
 
     public void display(Vector direction, float speed, Location center, double range)
@@ -274,7 +275,8 @@ public enum ParticleEffect
         {
             throw new ParticleDataException("This particle effect does not require additional data");
         }
-        new ParticlePacket(this, offsetX, offsetY, offsetZ, speed, amount, isLongDistance(center, players), data).sendTo(center, players);
+        new ParticlePacket(this, offsetX, offsetY, offsetZ, speed, amount, isLongDistance(center, players), data)
+            .sendTo(center, players);
     }
 
     public void display(ParticleData data, Vector direction, float speed, Location center, double range)
@@ -452,16 +454,22 @@ public enum ParticleEffect
             }
             try
             {
-                version = Integer.parseInt(Character.toString(ReflectionUtils.PackageType.getServerVersion().charAt(3)));
+                version = Integer
+                    .parseInt(Character.toString(ReflectionUtils.PackageType.getServerVersion().charAt(3)));
                 if (version > 7)
                 {
                     enumParticle = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("EnumParticle");
                 }
-                Class<?> packetClass = ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass(version < 7 ? "Packet63WorldParticles" : "PacketPlayOutWorldParticles");
+                Class<?> packetClass = ReflectionUtils.PackageType.MINECRAFT_SERVER
+                    .getClass(version < 7 ? "Packet63WorldParticles" : "PacketPlayOutWorldParticles");
                 packetConstructor = ReflectionUtils.getConstructor(packetClass, new Class[0]);
-                getHandle = ReflectionUtils.getMethod("CraftPlayer", ReflectionUtils.PackageType.CRAFTBUKKIT_ENTITY, "getHandle", new Class[0]);
-                playerConnection = ReflectionUtils.getField("EntityPlayer", ReflectionUtils.PackageType.MINECRAFT_SERVER, false, "playerConnection");
-                sendPacket = ReflectionUtils.getMethod(playerConnection.getType(), "sendPacket", new Class[]{ReflectionUtils.PackageType.MINECRAFT_SERVER.getClass("Packet")});
+                getHandle = ReflectionUtils
+                    .getMethod("CraftPlayer", ReflectionUtils.PackageType.CRAFTBUKKIT_ENTITY, "getHandle", new Class[0]);
+                playerConnection = ReflectionUtils
+                    .getField("EntityPlayer", ReflectionUtils.PackageType.MINECRAFT_SERVER, false, "playerConnection");
+                sendPacket = ReflectionUtils.getMethod(playerConnection
+                    .getType(), "sendPacket", new Class[]{ReflectionUtils.PackageType.MINECRAFT_SERVER
+                    .getClass("Packet")});
             } catch (Exception exception)
             {
                 throw new VersionIncompatibleException("Your current bukkit version seems to be incompatible with this library", exception);
@@ -511,7 +519,8 @@ public enum ParticleEffect
                     if (version > 7)
                     {
                         ReflectionUtils.setValue(this.packet, true, "j", Boolean.valueOf(this.longDistance));
-                        ReflectionUtils.setValue(this.packet, true, "k", this.data == null ? new int[0] : this.data.getPacketData());
+                        ReflectionUtils.setValue(this.packet, true, "k", this.data == null ? new int[0] : this.data
+                            .getPacketData());
                     }
                 } catch (Exception exception)
                 {
@@ -520,10 +529,12 @@ public enum ParticleEffect
             }
             try
             {
-                sendPacket.invoke(playerConnection.get(getHandle.invoke(player, new Object[0])), new Object[]{this.packet});
+                sendPacket
+                    .invoke(playerConnection.get(getHandle.invoke(player, new Object[0])), new Object[]{this.packet});
             } catch (Exception exception)
             {
-                throw new PacketSendingException("Failed to send the packet to player '" + player.getName() + "'", exception);
+                throw new PacketSendingException("Failed to send the packet to player '" + player
+                    .getName() + "'", exception);
             }
         }
 
@@ -559,7 +570,8 @@ public enum ParticleEffect
             for (int i = 0; i < j; i++)
             {
                 Player player = onlinePlayers.get(i);
-                if (player.getWorld().getName().equals(worldName) && player.getLocation().distanceSquared(center) <= squared)
+                if (player.getWorld().getName().equals(worldName) && player.getLocation()
+                    .distanceSquared(center) <= squared)
                 {
                     sendTo(center, player);
                 }

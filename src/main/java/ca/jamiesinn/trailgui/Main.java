@@ -13,6 +13,7 @@ import ca.jamiesinn.trailgui.commands.TrailCommand;
 import ca.jamiesinn.trailgui.commands.TrailGUICommand;
 import ca.jamiesinn.trailgui.commands.TrailsCommand;
 import ca.jamiesinn.trailgui.files.TrailData;
+
 import com.google.common.collect.Lists;
 
 public class Main
@@ -20,10 +21,12 @@ public class Main
 {
 
     private static final boolean useOldSystem = false;
+    private InventoryHelper inventoryHelper;
 
     @Deprecated
     private static Main plugin;
 
+    //@f:off
     @Deprecated public static List<String> trailAngryVillager = new ArrayList<>();
     @Deprecated public static List<String> trailCloud = new ArrayList<>();
     @Deprecated public static List<String> trailCriticals = new ArrayList<>();
@@ -54,6 +57,7 @@ public class Main
     @Deprecated public static List<String> trailHearts = new ArrayList<>();
     @Deprecated public static List<String> trailEnderSignal = new ArrayList<>();
     @Deprecated public static List<String> trailIconCrack = new ArrayList<>();
+    //@f:on
 
     @Deprecated
     public static Main getPlugin()
@@ -80,8 +84,15 @@ public class Main
         saveConfig();
 
         new TrailLoader(this).loadTrails();
+
         getServer().getPluginManager().registerEvents(new MovementListener(this), this);
-        //TODO
+        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+
+        if (getConfig().getBoolean("removeTrailOnPlayerHit"))
+        {
+            getServer().getPluginManager().registerEvents(new PlayerDamageListener(), this);
+        }
+
         enableCommon();
 
     }
@@ -146,7 +157,9 @@ public class Main
 
     private void addTrailDefault(String trailName, String... extraOpts)
     {
-        if (trailName.equalsIgnoreCase("MagicCrit") && "water_bottle".equalsIgnoreCase(getConfig().getString(trailName + "-itemType")))
+        // special case for bug fix of previous version
+        if (trailName.equalsIgnoreCase("MagicCrit") && "water_bottle"
+            .equalsIgnoreCase(getConfig().getString(trailName + "-itemType")))
         {
             getConfig().addDefault(trailName + ".item.data", "potion");
         } else
@@ -155,6 +168,7 @@ public class Main
         }
         getConfig().addDefault(trailName + ".item.data", 0); //new option so no copy from old
         addTrailDefaultCopy(trailName + ".item.slot", trailName + "-inventorySlot");
+        getConfig().addDefault(trailName + ".item.page", 0);
         addTrailDefaultCopy(trailName + ".item.name", trailName + "-itemName");
         getConfig().addDefault(trailName + ".item.lore", getOldLoreCfg(trailName));
 

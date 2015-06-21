@@ -1,16 +1,17 @@
 package ca.jamiesinn.trailgui;
 
-import javax.management.InstanceAlreadyExistsException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import javax.management.InstanceAlreadyExistsException;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import ca.jamiesinn.trailgui.util.Consumer;
+
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
@@ -26,6 +27,10 @@ public class Trail
         return trails.values();
     }
 
+    /**
+     * <b>be careful, you edit the original copy!</b>
+     * @return map of trail names mapped to Trail objects
+     */
     public static Map<String, Trail> getTrailsMap()
     {
         return trails;
@@ -66,18 +71,23 @@ public class Trail
     private final String name;
     private final String permission;
     private final ItemStack item;
+    private final int slot;
+    private final int page;
     private final Consumer<Player> trailDrawer;
     private final Set<UUID> usedCurr = new HashSet<>();
 
-    public Trail(String name, String permission, ItemStack item, Consumer<Player> trailDrawer)
+    public Trail(String name, String permission, ItemStack item, int page, int slot, Consumer<Player> trailDrawer)
     {
         name = name.toLowerCase().trim().intern();
-        if (trails.containsKey(name)) {
+        if (trails.containsKey(name))
+        {
             throw new RuntimeException(new InstanceAlreadyExistsException("A trail with the name " + name + " was already added!"));
         }
         this.name = name;
         this.permission = permission;
         this.item = item;
+        this.slot = slot;
+        this.page = page;
         this.trailDrawer = trailDrawer;
         trails.put(name, this);
     }
@@ -131,5 +141,15 @@ public class Trail
     public ItemStack getItem()
     {
         return item;
+    }
+
+    public int getSlot()
+    {
+        return slot;
+    }
+
+    public int getPage()
+    {
+        return page;
     }
 }

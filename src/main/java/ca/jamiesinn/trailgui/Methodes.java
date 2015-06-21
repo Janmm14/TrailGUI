@@ -378,7 +378,8 @@ public final class Methodes
 
     public static void openGUI1(Player player)
     {
-        Inventory inv1 = Bukkit.createInventory(null, 45, Main.getPlugin().getConfig().getString("pageOneInventoryName").replaceAll("&", "§"));
+        Inventory inv1 = Bukkit.createInventory(null, 45, Main.getPlugin().getConfig().getString("pageOneInventoryName")
+            .replaceAll("&", "§"));
 
         if (checkPerms("angryvillager", player))
         {
@@ -578,7 +579,8 @@ public final class Methodes
 
     public static void openGUI2(Player player)
     {
-        Inventory inv2 = Bukkit.createInventory(null, 45, Main.getPlugin().getConfig().getString("pageTwoInventoryName").replaceAll("&", "§"));
+        Inventory inv2 = Bukkit.createInventory(null, 45, Main.getPlugin().getConfig().getString("pageTwoInventoryName")
+            .replaceAll("&", "§"));
         if (checkPerms("hearts", player))
         {
             inv2.setItem(Main.getPlugin().getConfig().getInt("Hearts-inventorySlot"), itemHearts());
@@ -619,7 +621,8 @@ public final class Methodes
 
     public static ItemStack itemAngryVillager()
     {
-        ItemStack itemAngryVillager = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("AngryVillager-itemType").toUpperCase()), 1);
+        ItemStack itemAngryVillager = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("AngryVillager-itemType").toUpperCase()), 1);
         ItemMeta metaAngryVillager = itemAngryVillager.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("AngryVillager-itemName");
@@ -632,7 +635,8 @@ public final class Methodes
 
             String loreLine1 = Main.getPlugin().getConfig().getString("AngryVillager-loreLineOne").replaceAll("&", "§");
             String loreLine2 = Main.getPlugin().getConfig().getString("AngryVillager-loreLineTwo").replaceAll("&", "§");
-            String loreLine3 = Main.getPlugin().getConfig().getString("AngryVillager-loreLineThree").replaceAll("&", "§");
+            String loreLine3 = Main.getPlugin().getConfig().getString("AngryVillager-loreLineThree")
+                .replaceAll("&", "§");
 
             loreAngryVillager.add(loreLine1);
             loreAngryVillager.add(loreLine2);
@@ -646,7 +650,8 @@ public final class Methodes
 
     public static ItemStack itemCloud()
     {
-        ItemStack itemCloud = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Cloud-itemType").toUpperCase()), 1);
+        ItemStack itemCloud = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Cloud-itemType").toUpperCase()), 1);
         ItemMeta metaCloud = itemCloud.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Cloud-itemName");
@@ -672,7 +677,8 @@ public final class Methodes
 
     public static ItemStack itemCriticals()
     {
-        ItemStack itemCriticals = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Criticals-itemType").toUpperCase()), 1);
+        ItemStack itemCriticals = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Criticals-itemType").toUpperCase()), 1);
         ItemMeta metaCriticals = itemCriticals.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Criticals-itemName");
@@ -698,7 +704,8 @@ public final class Methodes
 
     public static ItemStack itemDripLava()
     {
-        ItemStack itemDripLava = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("DripLava-itemType").toUpperCase()), 1);
+        ItemStack itemDripLava = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("DripLava-itemType").toUpperCase()), 1);
         ItemMeta metaDripLava = itemDripLava.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("DripLava-itemName");
@@ -724,7 +731,8 @@ public final class Methodes
 
     public static ItemStack itemDripWater()
     {
-        ItemStack itemDripWater = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("DripWater-itemType").toUpperCase()), 1);
+        ItemStack itemDripWater = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("DripWater-itemType").toUpperCase()), 1);
         ItemMeta metaDripWater = itemDripWater.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("DripWater-itemName");
@@ -750,7 +758,8 @@ public final class Methodes
 
     public static ItemStack itemEnchantment()
     {
-        ItemStack itemEnchantment = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Enchantment-itemType").toUpperCase()), 1);
+        ItemStack itemEnchantment = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Enchantment-itemType").toUpperCase()), 1);
         ItemMeta metaEnchantment = itemEnchantment.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Enchantment-itemName");
@@ -776,7 +785,8 @@ public final class Methodes
 
     public static ItemStack itemSpark()
     {
-        ItemStack itemSpark = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Spark-itemType").toUpperCase()), 1);
+        ItemStack itemSpark = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Spark-itemType").toUpperCase()), 1);
         ItemMeta metaSpark = itemSpark.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Spark-itemName");
@@ -802,7 +812,8 @@ public final class Methodes
 
     public static ItemStack itemFlame()
     {
-        ItemStack itemFlame = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Flame-itemType").toUpperCase()), 1);
+        ItemStack itemFlame = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Flame-itemType").toUpperCase()), 1);
         ItemMeta metaFlame = itemFlame.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Flame-itemName");
@@ -828,7 +839,8 @@ public final class Methodes
 
     public static ItemStack itemHappyVillager()
     {
-        ItemStack itemHappyVillager = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("HappyVillager-itemType").toUpperCase()), 1);
+        ItemStack itemHappyVillager = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("HappyVillager-itemType").toUpperCase()), 1);
         ItemMeta metaHappyVillager = itemHappyVillager.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("HappyVillager-itemName");
@@ -839,7 +851,8 @@ public final class Methodes
 
             String loreLine1 = Main.getPlugin().getConfig().getString("HappyVillager-loreLineOne").replaceAll("&", "§");
             String loreLine2 = Main.getPlugin().getConfig().getString("HappyVillager-loreLineTwo").replaceAll("&", "§");
-            String loreLine3 = Main.getPlugin().getConfig().getString("HappyVillager-loreLineThree").replaceAll("&", "§");
+            String loreLine3 = Main.getPlugin().getConfig().getString("HappyVillager-loreLineThree")
+                .replaceAll("&", "§");
 
             loreHappyVillager.add(loreLine1);
             loreHappyVillager.add(loreLine2);
@@ -854,7 +867,8 @@ public final class Methodes
 
     public static ItemStack itemInstantSpell()
     {
-        ItemStack itemInstantSpell = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("InstantSpell-itemType").toUpperCase()), 1);
+        ItemStack itemInstantSpell = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("InstantSpell-itemType").toUpperCase()), 1);
         ItemMeta metaInstantSpell = itemInstantSpell.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("InstantSpell-itemName");
@@ -865,7 +879,8 @@ public final class Methodes
 
             String loreLine1 = Main.getPlugin().getConfig().getString("InstantSpell-loreLineOne").replaceAll("&", "§");
             String loreLine2 = Main.getPlugin().getConfig().getString("InstantSpell-loreLineTwo").replaceAll("&", "§");
-            String loreLine3 = Main.getPlugin().getConfig().getString("InstantSpell-loreLineThree").replaceAll("&", "§");
+            String loreLine3 = Main.getPlugin().getConfig().getString("InstantSpell-loreLineThree")
+                .replaceAll("&", "§");
 
             loreInstantSpell.add(loreLine1);
             loreInstantSpell.add(loreLine2);
@@ -880,7 +895,8 @@ public final class Methodes
 
     public static ItemStack itemLargeSmoke()
     {
-        ItemStack itemLargeSmoke = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("LargeSmoke-itemType").toUpperCase()), 1);
+        ItemStack itemLargeSmoke = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("LargeSmoke-itemType").toUpperCase()), 1);
         ItemMeta metaLargeSmoke = itemLargeSmoke.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("LargeSmoke-itemName");
@@ -906,7 +922,8 @@ public final class Methodes
 
     public static ItemStack itemLava()
     {
-        ItemStack itemLava = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Lava-itemType").toUpperCase()), 1);
+        ItemStack itemLava = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Lava-itemType").toUpperCase()), 1);
         ItemMeta metaLava = itemLava.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Lava-itemName");
@@ -959,7 +976,8 @@ public final class Methodes
 
     public static ItemStack itemMobSpell()
     {
-        ItemStack itemMobSpell = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("MobSpell-itemType").toUpperCase()), 1);
+        ItemStack itemMobSpell = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("MobSpell-itemType").toUpperCase()), 1);
         ItemMeta metaMobSpell = itemMobSpell.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("MobSpell-itemName");
@@ -986,7 +1004,8 @@ public final class Methodes
 
     public static ItemStack itemMobSpellAmbient()
     {
-        ItemStack itemMobSpellAmbient = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("MobSpellAmbient-itemType").toUpperCase()), 1);
+        ItemStack itemMobSpellAmbient = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("MobSpellAmbient-itemType").toUpperCase()), 1);
         ItemMeta metaMobSpellAmbient = itemMobSpellAmbient.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("MobSpellAmbient-itemName");
@@ -995,9 +1014,12 @@ public final class Methodes
         {
             List<String> loreMobSpellAmbient = new ArrayList<String>();
 
-            String loreLine1 = Main.getPlugin().getConfig().getString("MobSpellAmbient-loreLineOne").replaceAll("&", "§");
-            String loreLine2 = Main.getPlugin().getConfig().getString("MobSpellAmbient-loreLineTwo").replaceAll("&", "§");
-            String loreLine3 = Main.getPlugin().getConfig().getString("MobSpellAmbient-loreLineThree").replaceAll("&", "§");
+            String loreLine1 = Main.getPlugin().getConfig().getString("MobSpellAmbient-loreLineOne")
+                .replaceAll("&", "§");
+            String loreLine2 = Main.getPlugin().getConfig().getString("MobSpellAmbient-loreLineTwo")
+                .replaceAll("&", "§");
+            String loreLine3 = Main.getPlugin().getConfig().getString("MobSpellAmbient-loreLineThree")
+                .replaceAll("&", "§");
 
             loreMobSpellAmbient.add(loreLine1);
             loreMobSpellAmbient.add(loreLine2);
@@ -1012,7 +1034,8 @@ public final class Methodes
 
     public static ItemStack itemNote()
     {
-        ItemStack itemNote = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Note-itemType").toUpperCase()), 1);
+        ItemStack itemNote = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Note-itemType").toUpperCase()), 1);
         ItemMeta metaNote = itemNote.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Note-itemName");
@@ -1038,7 +1061,8 @@ public final class Methodes
 
     public static ItemStack itemPortal()
     {
-        ItemStack itemPortal = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Portal-itemType").toUpperCase()), 1);
+        ItemStack itemPortal = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Portal-itemType").toUpperCase()), 1);
         ItemMeta metaPortal = itemPortal.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Portal-itemName");
@@ -1064,7 +1088,8 @@ public final class Methodes
 
     public static ItemStack itemRedDust()
     {
-        ItemStack itemRedDust = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("RedDust-itemType").toUpperCase()), 1);
+        ItemStack itemRedDust = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("RedDust-itemType").toUpperCase()), 1);
         ItemMeta metaRedDust = itemRedDust.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("RedDust-itemName");
@@ -1090,7 +1115,8 @@ public final class Methodes
 
     public static ItemStack itemColoredRedDust()
     {
-        ItemStack itemColoredRedDust = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("ColoredRedDust-itemType").toUpperCase()), 1);
+        ItemStack itemColoredRedDust = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("ColoredRedDust-itemType").toUpperCase()), 1);
         ItemMeta metaColoredRedDust = itemColoredRedDust.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("ColoredRedDust-itemName");
@@ -1099,9 +1125,12 @@ public final class Methodes
         {
             List<String> loreColoredRedDust = new ArrayList<String>();
 
-            String loreLine1 = Main.getPlugin().getConfig().getString("ColoredRedDust-loreLineOne").replaceAll("&", "§");
-            String loreLine2 = Main.getPlugin().getConfig().getString("ColoredRedDust-loreLineTwo").replaceAll("&", "§");
-            String loreLine3 = Main.getPlugin().getConfig().getString("ColoredRedDust-loreLineThree").replaceAll("&", "§");
+            String loreLine1 = Main.getPlugin().getConfig().getString("ColoredRedDust-loreLineOne")
+                .replaceAll("&", "§");
+            String loreLine2 = Main.getPlugin().getConfig().getString("ColoredRedDust-loreLineTwo")
+                .replaceAll("&", "§");
+            String loreLine3 = Main.getPlugin().getConfig().getString("ColoredRedDust-loreLineThree")
+                .replaceAll("&", "§");
 
             loreColoredRedDust.add(loreLine1);
             loreColoredRedDust.add(loreLine2);
@@ -1116,7 +1145,8 @@ public final class Methodes
 
     public static ItemStack itemSlime()
     {
-        ItemStack itemSlime = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Slime-itemType").toUpperCase()), 1);
+        ItemStack itemSlime = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Slime-itemType").toUpperCase()), 1);
         ItemMeta metaSlime = itemSlime.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Slime-itemName");
@@ -1142,7 +1172,8 @@ public final class Methodes
 
     public static ItemStack itemSnowShovel()
     {
-        ItemStack itemSnowShovel = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("SnowShovel-itemType").toUpperCase()), 1);
+        ItemStack itemSnowShovel = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("SnowShovel-itemType").toUpperCase()), 1);
         ItemMeta metaSnowShovel = itemSnowShovel.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("SnowShovel-itemName");
@@ -1168,7 +1199,8 @@ public final class Methodes
 
     public static ItemStack itemSnowballPoof()
     {
-        ItemStack itemSnowballPoof = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("SnowballPoof-itemType").toUpperCase()), 1);
+        ItemStack itemSnowballPoof = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("SnowballPoof-itemType").toUpperCase()), 1);
         ItemMeta metaSnowballPoof = itemSnowballPoof.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("SnowballPoof-itemName");
@@ -1179,7 +1211,8 @@ public final class Methodes
 
             String loreLine1 = Main.getPlugin().getConfig().getString("SnowballPoof-loreLineOne").replaceAll("&", "§");
             String loreLine2 = Main.getPlugin().getConfig().getString("SnowballPoof-loreLineTwo").replaceAll("&", "§");
-            String loreLine3 = Main.getPlugin().getConfig().getString("SnowballPoof-loreLineThree").replaceAll("&", "§");
+            String loreLine3 = Main.getPlugin().getConfig().getString("SnowballPoof-loreLineThree")
+                .replaceAll("&", "§");
 
             loreSnowballPoof.add(loreLine1);
             loreSnowballPoof.add(loreLine2);
@@ -1194,7 +1227,8 @@ public final class Methodes
 
     public static ItemStack itemSpell()
     {
-        ItemStack itemSpell = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Spell-itemType").toUpperCase()), 1);
+        ItemStack itemSpell = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Spell-itemType").toUpperCase()), 1);
         ItemMeta metaSpell = itemSpell.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Spell-itemName");
@@ -1220,7 +1254,8 @@ public final class Methodes
 
     public static ItemStack itemSplash()
     {
-        ItemStack itemSplash = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Splash-itemType").toUpperCase()), 1);
+        ItemStack itemSplash = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Splash-itemType").toUpperCase()), 1);
         ItemMeta metaSplash = itemSplash.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Splash-itemName");
@@ -1246,7 +1281,8 @@ public final class Methodes
 
     public static ItemStack itemTownAura()
     {
-        ItemStack itemTownAura = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("TownAura-itemType").toUpperCase()), 1);
+        ItemStack itemTownAura = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("TownAura-itemType").toUpperCase()), 1);
         ItemMeta metaTownAura = itemTownAura.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("TownAura-itemName");
@@ -1272,7 +1308,8 @@ public final class Methodes
 
     public static ItemStack itemWake()
     {
-        ItemStack itemWake = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Wake-itemType").toUpperCase()), 1);
+        ItemStack itemWake = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Wake-itemType").toUpperCase()), 1);
         ItemMeta metaWake = itemWake.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Wake-itemName");
@@ -1298,7 +1335,8 @@ public final class Methodes
 
     public static ItemStack itemWitchMagic()
     {
-        ItemStack itemWitchMagic = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("WitchMagic-itemType").toUpperCase()), 1);
+        ItemStack itemWitchMagic = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("WitchMagic-itemType").toUpperCase()), 1);
         ItemMeta metaWitchMagic = itemWitchMagic.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("WitchMagic-itemName");
@@ -1324,7 +1362,8 @@ public final class Methodes
 
     public static ItemStack itemHearts()
     {
-        ItemStack itemHearts = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("Hearts-itemType").toUpperCase()), 1);
+        ItemStack itemHearts = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("Hearts-itemType").toUpperCase()), 1);
         ItemMeta metaHearts = itemHearts.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("Hearts-itemName");
@@ -1350,7 +1389,8 @@ public final class Methodes
 
     public static ItemStack itemNextPage()
     {
-        ItemStack itemNextPage = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("NextPage-itemType").toUpperCase()), 1);
+        ItemStack itemNextPage = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("NextPage-itemType").toUpperCase()), 1);
         ItemMeta metaNextPage = itemNextPage.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("NextPage-itemName");
@@ -1376,7 +1416,8 @@ public final class Methodes
 
     public static ItemStack itemPreviousPage()
     {
-        ItemStack itemPreviousPage = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("PreviousPage-itemType").toUpperCase()), 1);
+        ItemStack itemPreviousPage = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("PreviousPage-itemType").toUpperCase()), 1);
         ItemMeta metaPreviousPage = itemPreviousPage.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("PreviousPage-itemName");
@@ -1387,7 +1428,8 @@ public final class Methodes
 
             String loreLine1 = Main.getPlugin().getConfig().getString("PreviousPage-loreLineOne").replaceAll("&", "§");
             String loreLine2 = Main.getPlugin().getConfig().getString("PreviousPage-loreLineTwo").replaceAll("&", "§");
-            String loreLine3 = Main.getPlugin().getConfig().getString("PreviousPage-loreLineThree").replaceAll("&", "§");
+            String loreLine3 = Main.getPlugin().getConfig().getString("PreviousPage-loreLineThree")
+                .replaceAll("&", "§");
 
             lorePreviousPage.add(loreLine1);
             lorePreviousPage.add(loreLine2);
@@ -1402,7 +1444,8 @@ public final class Methodes
 
     public static ItemStack itemRemoveTrails()
     {
-        ItemStack itemRemoveTrails = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("RemoveTrails-itemType").toUpperCase()), 1);
+        ItemStack itemRemoveTrails = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("RemoveTrails-itemType").toUpperCase()), 1);
         ItemMeta metaRemoveTrails = itemRemoveTrails.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("RemoveTrails-itemName");
@@ -1413,7 +1456,8 @@ public final class Methodes
 
             String loreLine1 = Main.getPlugin().getConfig().getString("RemoveTrails-loreLineOne").replaceAll("&", "§");
             String loreLine2 = Main.getPlugin().getConfig().getString("RemoveTrails-loreLineTwo").replaceAll("&", "§");
-            String loreLine3 = Main.getPlugin().getConfig().getString("RemoveTrails-loreLineThree").replaceAll("&", "§");
+            String loreLine3 = Main.getPlugin().getConfig().getString("RemoveTrails-loreLineThree")
+                .replaceAll("&", "§");
 
             loreRemoveTrail.add(loreLine1);
             loreRemoveTrail.add(loreLine2);
@@ -1428,7 +1472,8 @@ public final class Methodes
 
     public static ItemStack itemEnderSignal()
     {
-        ItemStack itemEnderSignal = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("EnderSignal-itemType").toUpperCase()), 1);
+        ItemStack itemEnderSignal = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("EnderSignal-itemType").toUpperCase()), 1);
         ItemMeta metaEnderSignal = itemEnderSignal.getItemMeta();
 
         String name1 = Main.getPlugin().getConfig().getString("EnderSignal-itemName");
@@ -1454,7 +1499,8 @@ public final class Methodes
 
     public static ItemStack itemIconCrack()
     {
-        ItemStack i = new ItemStack(Material.valueOf(Main.getPlugin().getConfig().getString("IconCrack-itemType").toUpperCase()), 1);
+        ItemStack i = new ItemStack(Material
+            .valueOf(Main.getPlugin().getConfig().getString("IconCrack-itemType").toUpperCase()), 1);
         ItemMeta meta = i.getItemMeta();
         meta.setDisplayName(Main.getPlugin().getConfig().getString("IconCrack-itemName").replaceAll("&", "§"));
         i.setItemMeta(meta);

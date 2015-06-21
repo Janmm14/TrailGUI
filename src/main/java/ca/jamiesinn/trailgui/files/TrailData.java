@@ -29,7 +29,9 @@ public final class TrailData
                 file.createNewFile();
             } catch (Exception ex)
             {
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "Failed to generate the file: TrailData (error: " + ex.getMessage() + ')');
+                Bukkit.getServer().getConsoleSender()
+                    .sendMessage(ChatColor.DARK_RED + "Failed to generate the file: TrailData (error: " + ex
+                        .getMessage() + ')');
             }
             config = YamlConfiguration.loadConfiguration(file);
             config.createSection("AngryVillager");
@@ -83,7 +85,9 @@ public final class TrailData
             config.save(file);
         } catch (IOException ex)
         {
-            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.DARK_RED + "Could not save the file: TrailData (error: " + ex.getMessage() + ')');
+            Bukkit.getServer().getConsoleSender()
+                .sendMessage(ChatColor.DARK_RED + "Could not save the file: TrailData (error: " + ex
+                    .getMessage() + ')');
         }
     }
 }

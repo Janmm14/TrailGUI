@@ -33,12 +33,14 @@ public class TrailsCommand
             string.replace("]", "");
             if (string.equals(player.getWorld().getName()))
             {
-                player.sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "TrailGUI" + ChatColor.DARK_GRAY + "] " + ChatColor.GREEN + "You cannot use this command in this world.");
+                player
+                    .sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "TrailGUI" + ChatColor.DARK_GRAY + "] " + ChatColor.GREEN + "You cannot use this command in this world.");
                 return false;
             }
             if (!player.hasPermission("trailgui.commands.trails"))
             {
-                player.sendMessage(Main.getPlugin().getConfig().getString("Commands-denyPermissionMessage").replaceAll("&", "§"));
+                player.sendMessage(Main.getPlugin().getConfig().getString("Commands-denyPermissionMessage")
+                    .replaceAll("&", "§"));
                 if (Main.getPlugin().getConfig().getBoolean("closeInventoryOnDenyPermission"))
                 {
                     player.closeInventory();

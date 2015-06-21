@@ -15,6 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import ca.jamiesinn.trailgui.libraries.ParticleEffect;
 import ca.jamiesinn.trailgui.util.Consumer;
+
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.ImmutableMap;
@@ -58,14 +59,16 @@ public final class TrailLoader
                 @Override
                 public void accept(Player player)
                 {
-                    Location loc = player.getLocation().add(0.0D, getTrailOption("AngryVillager", "displayLocation"), 0.0D); //TODO put cooldown related into method
+                    Location loc = player.getLocation()
+                        .add(0.0D, getTrailOption("AngryVillager", "displayLocation"), 0.0D); //TODO put cooldown related into method
                     final UUID uuid = player.getUniqueId();
                     final Long lastUsed = cooldownAngryVillager.getIfPresent(uuid);
                     final long timeMillis = System.currentTimeMillis();
                     if (lastUsed == null || lastUsed < (timeMillis - getTrailOption("AngryVillager", "cooldown") * 50))
                     {
                         cooldownAngryVillager.put(uuid, timeMillis);
-                        ParticleEffect.VILLAGER_ANGRY.display(0, 0, 0, 0, getTrailOption("AngryVillager", "amount"), loc, getTrailOption("AngryVillager", "range"));
+                        ParticleEffect.VILLAGER_ANGRY
+                            .display(0, 0, 0, 0, getTrailOption("AngryVillager", "amount"), loc, getTrailOption("AngryVillager", "range"));
                     }
                 }
             })
@@ -75,7 +78,8 @@ public final class TrailLoader
                 public void accept(Player player)
                 {
                     Location loc = player.getLocation().add(0, getTrailOption("Cloud", "displayLocation"), 0);
-                    ParticleEffect.CLOUD.display(0, 0, 0, 0, getTrailOption("Cloud", "amount"), loc, getTrailOption("Cloud", "range"));
+                    ParticleEffect.CLOUD
+                        .display(0, 0, 0, 0, getTrailOption("Cloud", "amount"), loc, getTrailOption("Cloud", "range"));
                 }
             })
             .put("Criticals", new Consumer<Player>()
@@ -84,7 +88,8 @@ public final class TrailLoader
                 public void accept(Player player)
                 {
                     Location loc = player.getLocation().add(0, getTrailOption("Criticals", "displayLocation"), 0);
-                    ParticleEffect.CRIT.display(0, 0, 0, getTrailOption("Criticals", "speed"), getTrailOption("Criticals", "amount"), loc, getTrailOption("Criticals", "range"));
+                    ParticleEffect.CRIT
+                        .display(0, 0, 0, getTrailOption("Criticals", "speed"), getTrailOption("Criticals", "amount"), loc, getTrailOption("Criticals", "range"));
 
                 }
             })
@@ -94,7 +99,8 @@ public final class TrailLoader
                 public void accept(Player player)
                 {
                     Location loc = player.getLocation().add(0, getTrailOption("DripLava", "displayLocation"), 0);
-                    ParticleEffect.DRIP_LAVA.display(0, 0, 0, getTrailOption("DripLava", "speed"), getTrailOption("DripLava", "amount"), loc, getTrailOption("DripLava", "range"));
+                    ParticleEffect.DRIP_LAVA
+                        .display(0, 0, 0, getTrailOption("DripLava", "speed"), getTrailOption("DripLava", "amount"), loc, getTrailOption("DripLava", "range"));
 
                 }
             })
@@ -104,7 +110,8 @@ public final class TrailLoader
                 public void accept(Player player)
                 {
                     Location loc = player.getLocation().add(0, getTrailOption("DripWater", "displayLocation"), 0);
-                    ParticleEffect.DRIP_WATER.display(0, 0, 0, getTrailOption("DripWater", "speed"), getTrailOption("DripWater", "amount"), loc, getTrailOption("DripWater", "range"));
+                    ParticleEffect.DRIP_WATER
+                        .display(0, 0, 0, getTrailOption("DripWater", "speed"), getTrailOption("DripWater", "amount"), loc, getTrailOption("DripWater", "range"));
                 }
             })
             .put("Enchantment", new Consumer<Player>()
@@ -113,7 +120,8 @@ public final class TrailLoader
                 public void accept(Player player)
                 {
                     Location loc = player.getLocation().add(0, getTrailOption("Enchantment", "displayLocation"), 0);
-                    ParticleEffect.ENCHANTMENT_TABLE.display(0, 0, 0, getTrailOption("Enchantment", "Enchantment-speed"), getTrailOption("Enchantment", "amount"), loc, getTrailOption("Enchantment", "range"));
+                    ParticleEffect.ENCHANTMENT_TABLE
+                        .display(0, 0, 0, getTrailOption("Enchantment", "Enchantment-speed"), getTrailOption("Enchantment", "amount"), loc, getTrailOption("Enchantment", "range"));
                 }
             })
             .put("Spark", new Consumer<Player>()
@@ -122,7 +130,8 @@ public final class TrailLoader
                 public void accept(Player player)
                 {
                     Location loc = player.getLocation().add(0, getTrailOption("Spark", "displayLocation"), 0);
-                    ParticleEffect.FIREWORKS_SPARK.display(0, 0, 0, getTrailOption("Spark", "speed"), getTrailOption("Spark", "amount"), loc, getTrailOption("Spark", "range"));
+                    ParticleEffect.FIREWORKS_SPARK
+                        .display(0, 0, 0, getTrailOption("Spark", "speed"), getTrailOption("Spark", "amount"), loc, getTrailOption("Spark", "range"));
                 }
             })
             .put("Flame", new Consumer<Player>()
@@ -131,7 +140,8 @@ public final class TrailLoader
                 public void accept(Player player)
                 {
                     Location loc = player.getLocation().add(0, getTrailOption("Flame", "displayLocation"), 0);
-                    ParticleEffect.FLAME.display(0, 0, 0, getTrailOption("Flame", "speed"), getTrailOption("Flame", "amount"), loc, getTrailOption("Flame", "range"));
+                    ParticleEffect.FLAME
+                        .display(0, 0, 0, getTrailOption("Flame", "speed"), getTrailOption("Flame", "amount"), loc, getTrailOption("Flame", "range"));
                 }
             })
             .put("HappyVillager", new Consumer<Player>()
@@ -319,13 +329,23 @@ public final class TrailLoader
         for (Map.Entry<String, Consumer<Player>> entry : TRAILS.entrySet())
         {
             ItemStack is = loadItem(entry.getKey());
-            new Trail(entry.getKey(), "trailgui.trail." + entry.getKey(), is, entry.getValue()); //constructor adds object to map in Trail class
+            int page = main.getConfig().getInt(entry.getKey() + ".item.page");
+            int slot = main.getConfig().getInt(entry.getKey() + ".item.slot");
+            new Trail(entry.getKey(), "trailgui.trail." + entry.getKey(), is, page, slot,
+                entry.getValue()); //constructor adds object to map in Trail class
         }
     }
 
     private ItemStack loadItem(String trailName)
     {
-        final Material material = Material.matchMaterial(main.getConfig().getString(trailName + ".item.type"));
+        final String matName = main.getConfig().getString(trailName + ".item.type");
+        Material material = Material.matchMaterial(matName);
+        if (material == null || material == Material.AIR)
+        {
+            main.getLogger().warning("Incorrect item type in configuration of " + trailName + ": '" + matName + "' is no valid material name!");
+            main.getLogger().warning("Because of that, trail " + trailName + " will be a stone in the gui!");
+            material = Material.STONE;
+        }
         final int data = main.getConfig().getInt(trailName + ".item.data");
         ItemStack is = new ItemStack(material, 1, (short) data);
         final ItemMeta im = is.getItemMeta();

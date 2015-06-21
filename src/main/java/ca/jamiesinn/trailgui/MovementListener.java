@@ -22,7 +22,8 @@ public class MovementListener
     public void onPlayerMove(PlayerMoveEvent event)
     {
         if (main.getConfig().getBoolean("disableWhenSpinning") &&
-            event.getFrom().toVector().equals(event.getTo().toVector())) //vectors only contain x,y, and z and not pitch and yaw
+            event.getFrom().toVector()
+                .equals(event.getTo().toVector())) //vectors only contain x,y, and z and not pitch and yaw
         {
             return;
         }
@@ -32,7 +33,7 @@ public class MovementListener
         final String worldName = player.getWorld().getName();
         for (String world : main.getConfig().getStringList("disabledWorlds"))
         {
-            if (worldName.equals(world))
+            if (worldName.equalsIgnoreCase(world))
             {
                 return;
             }
