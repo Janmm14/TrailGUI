@@ -412,7 +412,7 @@ MagicCrit-range: 20
 #The inventory slot the item is put in.
 MagicCrit-inventorySlot: 12
 #The items type.
-MagicCrit-itemType: water_bottle
+MagicCrit-itemType: potion
 #The items name.
 MagicCrit-itemName: "&6MagicCrit"
 #Whether or not the lore is enabled.

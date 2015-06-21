@@ -77,47 +77,47 @@ public class Main
     {
         getConfig().options().copyDefaults(true);
         convertConfig();
-        saveDefaultConfig();
+        saveConfig();
 
         new TrailLoader(this).loadTrails();
         getServer().getPluginManager().registerEvents(new MovementListener(this), this);
         //TODO
         enableCommon();
+
     }
 
     private void convertConfig()
     {
-        addTrailDefault("AngryVillager");
+        addTrailDefault("AngryVillager", "speed", "cooldown");
         addTrailDefault("Cloud");
-        addTrailDefault("Criticals");
-        addTrailDefault("DripLava");
-        addTrailDefault("DripWater");
-        addTrailDefault("Enchantment");
-        addTrailDefault("Spark");
-        addTrailDefault("Flame");
-        addTrailDefault("HappyVillager");
-        addTrailDefault("InstantSpell");
-        addTrailDefault("LargeSmoke");
-        addTrailDefault("Lava");
-        addTrailDefault("MagicCrit");
-        addTrailDefault("MobSpell");
-        addTrailDefault("MobSpellAmbient");
-        addTrailDefault("Note");
-        addTrailDefault("Portal");
-        addTrailDefault("RedDust");
-        addTrailDefault("ColoredRedDust");
-        addTrailDefault("Slime");
-        addTrailDefault("SnowShovel");
-        addTrailDefault("SnowballPoof");
-        addTrailDefault("Spell");
-        addTrailDefault("Splash");
-        addTrailDefault("TownAura");
-        addTrailDefault("Wake");
-        addTrailDefault("WitchMagic");
-        addTrailDefault("Hearts");
-        addTrailDefault("EnderSignal");
-        addTrailDefault("IconCrack");
-
+        addTrailDefault("Criticals", "speed");
+        addTrailDefault("DripLava", "speed");
+        addTrailDefault("DripWater", "speed");
+        addTrailDefault("Enchantment", "speed");
+        addTrailDefault("Spark", "speed");
+        addTrailDefault("Flame", "speed");
+        addTrailDefault("HappyVillager", "speed");
+        addTrailDefault("InstantSpell", "speed");
+        addTrailDefault("LargeSmoke", "speed");
+        addTrailDefault("Lava", "speed");
+        addTrailDefault("MagicCrit", "speed");
+        addTrailDefault("MobSpell", "speed");
+        addTrailDefault("MobSpellAmbient", "speed");
+        addTrailDefault("Note", "speed", "cooldown");
+        addTrailDefault("Portal", "speed");
+        addTrailDefault("RedDust", "speed");
+        addTrailDefault("ColoredRedDust", "speed");
+        addTrailDefault("Slime", "speed");
+        addTrailDefault("SnowShovel", "speed");
+        addTrailDefault("SnowballPoof", "speed");
+        addTrailDefault("Spell", "speed");
+        addTrailDefault("Splash", "speed");
+        addTrailDefault("TownAura", "speed");
+        addTrailDefault("Wake", "speed");
+        addTrailDefault("WitchMagic", "speed");
+        addTrailDefault("Hearts", "speed", "cooldown");
+        addTrailDefault("EnderSignal", "speed", "cooldown");
+        addTrailDefault("IconCrack", "speed");
     }
 
     private void enableOld()
@@ -146,44 +146,43 @@ public class Main
 
     private void addTrailDefault(String trailName, String... extraOpts)
     {
-        getConfig().addDefault(trailName + ".item.type", getConfig().getString(trailName + "-itemType"));
-        getConfig().addDefault(trailName + ".item.data", 0);
-        getConfig().addDefault(trailName + ".item.slot", getConfig().getString(trailName + "-inventorySlot"));
-        getConfig().addDefault(trailName + ".item.name", getConfig().getString(trailName + "-itemName"));
-        getConfig().addDefault(trailName + ".item.lore", getConfig().getString(trailName + "-itemName"));
+        if (trailName.equalsIgnoreCase("MagicCrit") && "water_bottle".equalsIgnoreCase(getConfig().getString(trailName + "-itemType")))
+        {
+            getConfig().addDefault(trailName + ".item.data", "potion");
+        } else
+        {
+            addTrailDefaultCopy(trailName + ".item.type", trailName + "-itemType");
+        }
+        getConfig().addDefault(trailName + ".item.data", 0); //new option so no copy from old
+        addTrailDefaultCopy(trailName + ".item.slot", trailName + "-inventorySlot");
+        addTrailDefaultCopy(trailName + ".item.name", trailName + "-itemName");
+        getConfig().addDefault(trailName + ".item.lore", getOldLoreCfg(trailName));
 
+        addTrailDefaultCopy(trailName + ".options.displayLocation", trailName + "-displayLocation");
+        addTrailDefaultCopy(trailName + ".options.amount", trailName + "-amount");
+        addTrailDefaultCopy(trailName + ".options.range", trailName + "-range");
+
+        if (extraOpts != null)
+        {
+            for (String opt : extraOpts)
+            {
+                addTrailDefaultCopy(trailName + ".options." + opt, getConfig().getString(trailName + "-" + opt));
+            }
+        }
+    }
+
+    private void addTrailDefaultCopy(String newStr, String old)
+    {
+        getConfig().addDefault(newStr, getConfig().getString(old));
     }
 
     private List<String> getOldLoreCfg(String trailName)
     {
         if (getConfig().getBoolean(trailName + "-loreEnabled"))
         {
-            String loreLine1 = getConfig().getString(trailName + "-loreLineOne");
-            String loreLine2 = getConfig().getString(trailName + "-loreLineTwo");
-            String loreLine3 = getConfig().getString(trailName + "-loreLineThree");
-            if (loreLine1 == null || loreLine1.isEmpty()) {
-                return Lists.newArrayList();
-            } else
-            {
-                if (loreLine2 == null || loreLine2.isEmpty())
-                {
-                    if (loreLine3 == null || loreLine3.isEmpty())
-                    {
-                        return Lists.newArrayList(loreLine1);
-                    } else
-                    {
-                        return Lists.newArrayList(loreLine1);
-                    }
-                } else
-                {
-                    if (loreLine3 == null || loreLine3.isEmpty())
-                    {
-
-                    } else {
-
-                    }
-                }
-            }
+            String loreLine1 = getConfig().getString(trailName + "-loreLineOne", "");
+            String loreLine2 = getConfig().getString(trailName + "-loreLineTwo", "");
+            String loreLine3 = getConfig().getString(trailName + "-loreLineThree", "");
         }
         return Lists.newArrayList();
     }
