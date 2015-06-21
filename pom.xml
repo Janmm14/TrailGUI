@@ -12,7 +12,7 @@
 
     <repositories>
         <repository>
-            <id>spigot-repo</id>
+            <id>spigotmc-public</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
     </repositories>
@@ -48,12 +48,12 @@
 
     <distributionManagement>
         <repository>
-            <id>sinndev-repo</id>
+            <id>sinndev-repo-releases</id>
             <name>Releases</name>
             <url>http://repo.sinndev.com/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
-            <id>sinndev-repo</id>
+            <id>sinndev-repo-snapshots</id>
             <name>Snapshots</name>
             <url>http://repo.sinndev.com/content/repositories/snapshots/</url>
         </snapshotRepository>
