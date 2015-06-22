@@ -7,12 +7,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import ca.jamiesinn.trailgui.Main;
-import ca.jamiesinn.trailgui.Methodes;
 
 public class TrailsCommand
     implements CommandExecutor
 {
-    Main main;
+    private Main main;
 
     public TrailsCommand(Main main)
     {
@@ -23,33 +22,27 @@ public class TrailsCommand
     {
         if (!(sender instanceof Player))
         {
-            sender.sendMessage(ChatColor.DARK_RED + "[TrailGUI] Only players can perform this command.");
+            sender.sendMessage(TrailCommand.PREFIX + ChatColor.DARK_RED + "Only players can perform this command.");
             return true;
         }
         Player player = (Player) sender;
-        for (String string : this.main.getConfig().getStringList("disabledWorlds"))
+        for (String string : main.getConfig().getStringList("disabledWorlds"))
         {
-            string.replace("[", "");
-            string.replace("]", "");
             if (string.equals(player.getWorld().getName()))
             {
                 player
-                    .sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "TrailGUI" + ChatColor.DARK_GRAY + "] " + ChatColor.GREEN + "You cannot use this command in this world.");
-                return false;
+                    .sendMessage(TrailCommand.PREFIX + ChatColor.RED + "You cannot use this command in this world.");
+                return true;
             }
-            if (!player.hasPermission("trailgui.commands.trails"))
-            {
-                player.sendMessage(Main.getPlugin().getConfig().getString("Commands-denyPermissionMessage")
-                    .replaceAll("&", "§"));
-                if (Main.getPlugin().getConfig().getBoolean("closeInventoryOnDenyPermission"))
-                {
-                    player.closeInventory();
-                }
-                return false;
-            }
-            Methodes.openGUI1(player);
         }
+        if (!player.hasPermission("trailgui.commands.trails"))
+        {
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                main.getConfig().getString("Commands-denyPermissionMessage")));
+            return true;
+        }
+        main.getInventoryHelper().openInventory(player);
 
-        return false;
+        return true;
     }
 }

@@ -1,6 +1,5 @@
 package ca.jamiesinn.trailgui;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -12,18 +11,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import com.google.common.base.Predicate;
-import com.google.common.collect.Collections2;
+import org.bukkit.metadata.FixedMetadataValue;
 
 public class InventoryHelper
 {
+    private static final String INVENTORY_MARKER_STR = "ci.jamiesinn.trailgui.InventoryMarker";
     private final Main main;
     private final ItemStack fillEmptyItem;
+    private final FixedMetadataValue fixedMetadataValue;
 
     public InventoryHelper(Main main)
     {
         this.main = main;
+
+        fixedMetadataValue = new FixedMetadataValue(main, null);
+
+        // set up empty item
         fillEmptyItem = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.GRAY.getData());
         final ItemMeta im = fillEmptyItem.getItemMeta();
         im.setDisplayName(ChatColor.BLACK.toString());
@@ -31,16 +34,24 @@ public class InventoryHelper
         fillEmptyItem.setItemMeta(im);
     }
 
-    public void openInventory(Player player, final int page)
+    public boolean hasInventoryOpen(Player player)
     {
-        final Collection<Trail> trails = Collections2.filter(Trail.getTrails(), new Predicate<Trail>()
-        {
-            @Override
-            public boolean apply(Trail input)
-            {
-                return input.getPage() == page;
-            }
-        });
+        return player.hasMetadata(INVENTORY_MARKER_STR);
+    }
+
+    /**
+     * <b>IMPORTANT TO CALL!</b>
+     *
+     * @param player the player who's inventory should be closed
+     */
+    public void trackCloseInventory(final Player player)
+    {
+        player.removeMetadata(INVENTORY_MARKER_STR, main);
+    }
+
+    public void openInventory(Player player)
+    {
+        final Collection<Trail> trails = Trail.getTrails();
         int maxSlot = 0;
         for (Trail trail : trails)
         {
@@ -49,24 +60,21 @@ public class InventoryHelper
                 maxSlot = trail.getSlot();
             }
         }
-        final Inventory inv = Bukkit.createInventory(null, (int) (Math.ceil(maxSlot / 9) * 9 + 9),
-            ChatColor.GOLD + "TrailGUI " + page + "/2"); //TODO make name configurable
+        final Inventory inv = Bukkit.createInventory(null, (int) (Math.ceil(maxSlot / 9) * 9),
+            ChatColor.GOLD + main.getConfig().getString("gui.name"));
         for (Trail trail : trails)
         {
             if (player.hasPermission(trail.getPermission()))
             {
-                inv.setItem(trail.getSlot(), trail.getItem());
+                inv.setItem(trail.getSlot(), trail.getItem()); //TODO show in lore when player has trail
             } else
             {
                 inv.setItem(trail.getSlot(), toNoPermItem(trail.getItem()));
             }
         }
-        final int sizem9 = inv.getSize() - 9;
-        int previous = sizem9 + getOption("previous", "slot");
-        int next = sizem9 + getOption("next", "slot");
 
         //fill empty places
-        final ItemStack[] invContents = inv.getContents();
+        final ItemStack[] invContents = inv.getContents(); //TODO add item for removing all trails
         final int length = invContents.length;
         for (int i = 0; i < length; i++)
         {
@@ -77,70 +85,37 @@ public class InventoryHelper
             }
         }
         inv.setContents(invContents);
-    }
-
-    private int getOption(String base, String option)
-    {
-        return main.getConfig().getInt(base + ".options." + option);
-    }
-
-    private ItemStack loadItem(String name)
-    {
-        final String matName = main.getConfig().getString(name + ".item.type");
-        Material material = Material.matchMaterial(matName);
-        if (material == null || material == Material.AIR)
-        {
-            main.getLogger()
-                .warning("Incorrect item type in configuration of " + name + ": '" + matName + "' is no valid material name!");
-            main.getLogger().warning("Because of that, " + name + " will be a stone in the gui!");
-            material = Material.STONE;
-        }
-        final int data = main.getConfig().getInt(name + ".item.data");
-        ItemStack is = new ItemStack(material, 1, (short) data);
-        final ItemMeta im = is.getItemMeta();
-        final String dispName = main.getConfig().getString(name + ".item.name");
-        if (dispName != null && !dispName.isEmpty())
-        {
-            im.setDisplayName(ChatColor.translateAlternateColorCodes('&', dispName));
-        }
-        final List<String> lore = main.getConfig().getStringList(name + ".item.lore");
-        //convert lore color code
-        if (lore != null && !lore.isEmpty())
-        {
-            final String firstLoreLine = lore.get(0);
-            if (firstLoreLine != null && !firstLoreLine.isEmpty())
-            {
-                List<String> newLore = new ArrayList<>(lore.size());
-                for (String line : lore)
-                {
-                    if (!line.isEmpty())
-                    {
-                        newLore.add(ChatColor.translateAlternateColorCodes('&', line));
-                    }
-                }
-                im.setLore(newLore);
-            }
-        }
-        is.setItemMeta(im);
-        return is;
+        player.setMetadata(INVENTORY_MARKER_STR, fixedMetadataValue);
+        player.openInventory(inv);
     }
 
     private ItemStack toNoPermItem(ItemStack input)
     {
+        final ItemMeta inputIm = input.getItemMeta();
+        ItemStack is = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) DyeColor.RED.getData());
+
         final ItemMeta im = input.getItemMeta();
-        input.setType(Material.STAINED_GLASS_PANE);
-        input.setAmount(1);
-        input.setDurability((short) DyeColor.RED.getData());
-        final ItemMeta newIm = input.getItemMeta();
-        if (im.hasDisplayName())
+        if (inputIm.hasDisplayName())
         {
-            newIm.setDisplayName(im.getDisplayName());
+            im.setDisplayName(inputIm.getDisplayName());
         }
-        if (im.hasLore())
+        if (inputIm.hasLore())
         {
-            newIm.setLore(im.getLore());
+            final List<String> lore = inputIm.getLore();
+            final String noPermloreLine = main.getConfig().getString("gui.noPermLoreLine");
+            if (noPermloreLine != null && !noPermloreLine.isEmpty())
+            {
+                if (main.getConfig().getBoolean("gui.noPermLoreInfoAtBottom"))
+                {
+                    lore.add(ChatColor.translateAlternateColorCodes('&', noPermloreLine));
+                } else
+                {
+                    lore.add(0, ChatColor.translateAlternateColorCodes('&', noPermloreLine));
+                }
+            }
+            im.setLore(lore);
         }
-        input.setItemMeta(newIm);
-        return input;
+        is.setItemMeta(im);
+        return is;
     }
 }

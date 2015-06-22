@@ -4,7 +4,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import ca.jamiesinn.trailgui.Main;
 import ca.jamiesinn.trailgui.files.TrailData;
@@ -12,7 +11,7 @@ import ca.jamiesinn.trailgui.files.TrailData;
 public class TrailGUICommand
     implements CommandExecutor
 {
-    Main main;
+    private Main main;
 
     public TrailGUICommand(Main main)
     {
@@ -21,62 +20,48 @@ public class TrailGUICommand
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
-        if (!(sender instanceof Player))
+        if (args.length == 0)
         {
-            sender.sendMessage(ChatColor.DARK_RED + "[TrailGUI] Only players can perform this command");
+            sender.sendMessage(TrailCommand.PREFIX + ChatColor.GREEN + "Available commands:");
+            sender.sendMessage(ChatColor.GREEN + "/TrailGUI ReloadConfigs");
+            sender.sendMessage(ChatColor.GREEN + "/TrailGUI Version");
             return true;
         }
-        Player player = (Player) sender;
-        for (String string : this.main.getConfig().getStringList("disabledWorlds"))
+        if (args[0].equalsIgnoreCase("reloadconfigs") || args[0].equalsIgnoreCase("reloadconfig"))
         {
-            string.replace("[", "");
-            string.replace("]", "");
-            if (string.equals(player.getWorld().getName()))
+            if (!sender.hasPermission("trailgui.commands.reloadconfigs"))
             {
-                player
-                    .sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "TrailGUI" + ChatColor.DARK_GRAY + "] " + ChatColor.GREEN + "You cannot use this command in this world.");
-                return false;
-            }
-            if (args.length == 0)
-            {
-                player
-                    .sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "TrailGUI" + ChatColor.DARK_GRAY + "]: " + ChatColor.GREEN + "Available commands:");
-                player.sendMessage(ChatColor.GREEN + "/TrailGUI ReloadConfigs");
-                player.sendMessage(ChatColor.GREEN + "/TrailGUI Version");
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    main.getConfig().getString("Commands-denyPermissionMessage")));
                 return true;
             }
-            if (args[0].equalsIgnoreCase("ReloadConfigs"))
-            {
-                if (!player.hasPermission("trailgui.commands.reloadconfigs"))
-                {
-                    player.sendMessage(Main.getPlugin().getConfig().getString("Commands-denyPermissionMessage")
-                        .replaceAll("&", "§"));
-                    return false;
-                }
-                TrailData.reloadConfig();
-                TrailData.saveConfig();
+            //TODO rework these methods
+            TrailData.reloadConfig();
+            TrailData.saveConfig();
 
-                Main.getPlugin().reloadConfig();
-                Main.getPlugin().saveConfig();
+            main.reloadConfig();
+            main.saveConfig();
 
-                player
-                    .sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "TrailGUI" + ChatColor.DARK_GRAY + "]: " + ChatColor.GREEN + "Successfully reloaded all config files.");
-                return true;
-            }
-            if (args[0].equalsIgnoreCase("Version"))
-            {
-                if (!player.hasPermission("trailgui.commands.version"))
-                {
-                    player.sendMessage(this.main.getConfig().getString("Commands-denyPermissionMessage")
-                        .replaceAll("&", "§"));
-                    return false;
-                }
-                player
-                    .sendMessage(ChatColor.DARK_GRAY + "[" + ChatColor.RED + "TrailGUI" + ChatColor.DARK_GRAY + "]: " + ChatColor.GREEN + "Version 3.1" + ChatColor.GREEN + " created by " + ChatColor.BOLD + "Coder_M" + ChatColor.GREEN + ".");
-                return true;
-            }
+            sender
+                .sendMessage(TrailCommand.PREFIX + ChatColor.GREEN + "Successfully reloaded all config files.");
+            return true;
         }
-
-        return false;
+        if (args[0].equalsIgnoreCase("version"))
+        {
+            if (!sender.hasPermission("trailgui.commands.version"))
+            {
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    main.getConfig().getString("Commands-denyPermissionMessage")));
+                return true;
+            }
+            sender.sendMessage(TrailCommand.PREFIX + ChatColor.GREEN + "Version 3.1 created by "
+                + ChatColor.BOLD + "Coder_M, JamieSinn and Janmm14" + ChatColor.GREEN + ".");
+            return true;
+        }
+        sender.sendMessage(TrailCommand.PREFIX + ChatColor.RED + "Subcommand " + args[0] + " not found!");
+        sender.sendMessage(TrailCommand.PREFIX + ChatColor.GREEN + "Available commands:");
+        sender.sendMessage(ChatColor.GREEN + "/TrailGUI ReloadConfigs");
+        sender.sendMessage(ChatColor.GREEN + "/TrailGUI Version");
+        return true;
     }
 }

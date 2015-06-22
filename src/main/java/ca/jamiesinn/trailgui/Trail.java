@@ -20,6 +20,7 @@ public class Trail
 {
 
     private static final Map<String, Trail> trails = Maps.newHashMapWithExpectedSize(30); //change when you add a trail!
+    private static final Map<Integer, Trail> trailsBySlot = Maps.newHashMapWithExpectedSize(30); //change when you add a trail!
     private static final SetMultimap<UUID, Trail> trailsByUuid = HashMultimap.create();
 
     public static Collection<Trail> getTrails()
@@ -27,8 +28,26 @@ public class Trail
         return trails.values();
     }
 
+    public static Set<String> getTrailNames()
+    {
+        return trails.keySet();
+    }
+
+    public static Trail matchTrail(String input)
+    {
+        for (Trail trail : getTrails())
+        {
+            if (trail.getName().equalsIgnoreCase(input))
+            {
+                return trail;
+            }
+        }
+        return null;
+    }
+
     /**
      * <b>be careful, you edit the original copy!</b>
+     *
      * @return map of trail names mapped to Trail objects
      */
     public static Map<String, Trail> getTrailsMap()
@@ -40,6 +59,11 @@ public class Trail
     {
         name = name.toLowerCase().trim().intern();
         return trails.get(name);
+    }
+
+    public static Trail getTrail(int slot)
+    {
+        return trailsBySlot.get(slot);
     }
 
     public static Set<Trail> getTrailsOf(UUID uuid)
@@ -72,11 +96,10 @@ public class Trail
     private final String permission;
     private final ItemStack item;
     private final int slot;
-    private final int page;
     private final Consumer<Player> trailDrawer;
     private final Set<UUID> usedCurr = new HashSet<>();
 
-    public Trail(String name, String permission, ItemStack item, int page, int slot, Consumer<Player> trailDrawer)
+    public Trail(String name, String permission, ItemStack item, int slot, Consumer<Player> trailDrawer)
     {
         name = name.toLowerCase().trim().intern();
         if (trails.containsKey(name))
@@ -87,7 +110,6 @@ public class Trail
         this.permission = permission;
         this.item = item;
         this.slot = slot;
-        this.page = page;
         this.trailDrawer = trailDrawer;
         trails.put(name, this);
     }
@@ -117,6 +139,7 @@ public class Trail
      */
     public boolean addTrail(UUID uuid)
     {
+        trailsByUuid.put(uuid, this);
         return usedCurr.add(uuid);
     }
 
@@ -125,6 +148,7 @@ public class Trail
      */
     public boolean removeTrail(UUID uuid)
     {
+        trailsByUuid.remove(uuid, this);
         return usedCurr.remove(uuid);
     }
 
@@ -146,10 +170,5 @@ public class Trail
     public int getSlot()
     {
         return slot;
-    }
-
-    public int getPage()
-    {
-        return page;
     }
 }

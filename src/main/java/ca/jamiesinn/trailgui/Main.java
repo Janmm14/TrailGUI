@@ -81,12 +81,16 @@ public class Main
     {
         getConfig().options().copyDefaults(true);
         convertConfig();
+        getConfig().addDefault("gui.name", "&6TrailGUI");
+        getConfig().addDefault("gui.noPermLoreLine", "&4You may not use this lore!");
+        getConfig().addDefault("gui.noPermLoreInfoAtBottom", false);
         saveConfig();
 
         new TrailLoader(this).loadTrails();
 
         getServer().getPluginManager().registerEvents(new MovementListener(this), this);
-        getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+        inventoryHelper = new InventoryHelper(this);
+        getServer().getPluginManager().registerEvents(new InventoryListener(main), this);
 
         if (getConfig().getBoolean("removeTrailOnPlayerHit"))
         {
@@ -217,7 +221,12 @@ public class Main
             Methodes.saveTrails();
         } else
         {
-            //TODO
+            //TODO disable on new system
         }
+    }
+
+    public InventoryHelper getInventoryHelper()
+    {
+        return inventoryHelper;
     }
 }

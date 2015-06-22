@@ -21,10 +21,14 @@ public class Listeners
     implements Listener
 {
 
-    @Deprecated public static List<String> cooldownAngryVillager = new ArrayList<>();
-    @Deprecated public static List<String> cooldownEnderSignal = new ArrayList<>();
-    @Deprecated public static List<String> cooldownHearts = new ArrayList<>();
-    @Deprecated public static List<String> cooldownNote = new ArrayList<>();
+    @Deprecated
+    public static List<String> cooldownAngryVillager = new ArrayList<>();
+    @Deprecated
+    public static List<String> cooldownEnderSignal = new ArrayList<>();
+    @Deprecated
+    public static List<String> cooldownHearts = new ArrayList<>();
+    @Deprecated
+    public static List<String> cooldownNote = new ArrayList<>();
     private final Main main;
 
     public Listeners(Main main)

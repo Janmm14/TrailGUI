@@ -204,7 +204,7 @@ public final class TrailLoader
             {
                 @Override
                 public void accept(Player player)
-                {
+                { //cooldown
                     Location loc = player.getLocation().add(0, getTrailOption("Note", "displayLocation"), 0);
                 }
             })
@@ -300,7 +300,7 @@ public final class TrailLoader
             {
                 @Override
                 public void accept(Player player)
-                {
+                { //cooldown
                     Location loc = player.getLocation().add(0, getTrailOption("Hearts", "displayLocation"), 0);
                 }
             })
@@ -308,7 +308,7 @@ public final class TrailLoader
             {
                 @Override
                 public void accept(Player player)
-                {
+                { //cooldown
                     Location loc = player.getLocation().add(0, getTrailOption("EnderSignal", "displayLocation"), 0);
                 }
             })
@@ -329,10 +329,8 @@ public final class TrailLoader
         for (Map.Entry<String, Consumer<Player>> entry : TRAILS.entrySet())
         {
             ItemStack is = loadItem(entry.getKey());
-            int page = main.getConfig().getInt(entry.getKey() + ".item.page");
             int slot = main.getConfig().getInt(entry.getKey() + ".item.slot");
-            new Trail(entry.getKey(), "trailgui.trail." + entry.getKey(), is, page, slot,
-                entry.getValue()); //constructor adds object to map in Trail class
+            new Trail(entry.getKey(), "trailgui.trail." + entry.getKey(), is, slot, entry.getValue()); //constructor adds object to map in Trail class
         }
     }
 
@@ -342,7 +340,8 @@ public final class TrailLoader
         Material material = Material.matchMaterial(matName);
         if (material == null || material == Material.AIR)
         {
-            main.getLogger().warning("Incorrect item type in configuration of " + trailName + ": '" + matName + "' is no valid material name!");
+            main.getLogger()
+                .warning("Incorrect item type in configuration of " + trailName + ": '" + matName + "' is no valid material name!");
             main.getLogger().warning("Because of that, trail " + trailName + " will be a stone in the gui!");
             material = Material.STONE;
         }
