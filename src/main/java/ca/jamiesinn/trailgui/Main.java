@@ -90,7 +90,7 @@ public class Main
 
         getServer().getPluginManager().registerEvents(new MovementListener(this), this);
         inventoryHelper = new InventoryHelper(this);
-        getServer().getPluginManager().registerEvents(new InventoryListener(main), this);
+        getServer().getPluginManager().registerEvents(new InventoryListener(this), this);
 
         if (getConfig().getBoolean("removeTrailOnPlayerHit"))
         {
